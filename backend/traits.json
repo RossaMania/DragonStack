@@ -1,0 +1,51 @@
+[
+  {
+    "type": "backgroundColor",
+    "values": [
+      "black",
+      "white",
+      "green",
+      "blue",
+      "red",
+      "yellow",
+      "purple",
+      "orange",
+      "brown"
+    ]
+  },
+  {
+    "type": "pattern",
+    "values": [
+      "plain",
+      "solid",
+      "striped",
+      "dotted",
+      "patchy",
+      "checkered",
+      "plaid"
+    ]
+  },
+  {
+    "type": "build",
+    "values": [
+      "skinny",
+      "slender",
+      "average",
+      "stocky",
+      "muscular",
+      "sporty",
+      "fat"
+    ]
+  },
+  {
+    "type": "size",
+    "values": [
+      "tiny",
+      "small",
+      "medium",
+      "large",
+      "huge",
+      "enormous"
+    ]
+  }
+]
