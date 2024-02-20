@@ -1,3 +1,5 @@
+const TRAITS = require("./traits.json");
+
 const DEFAULT_PROPERTIES = {
   nickname: "unnamed",
   get birthdate() {
