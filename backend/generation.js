@@ -33,3 +33,5 @@ class Generation {
     return new Dragon();
   }
 }
+
+module.exports = Generation;
