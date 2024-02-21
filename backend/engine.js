@@ -23,3 +23,5 @@ class GenerationEngine {
     this.generation.expiration.getTime() - Date.now()); // Time until the generation expires in milliseconds
   }
 }
+
+module.exports = GenerationEngine;
