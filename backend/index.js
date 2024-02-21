@@ -50,7 +50,6 @@ const GenerationEngine = require("./engine.js");
 
 const app = express();
 const engine = new GenerationEngine();
-const port = 3000;
 
 engine.start();
 
@@ -58,4 +57,4 @@ app.get("/dragon/new", (req, res) => {
   res.json({ dragon: engine.generation.newDragon() });
 }); // Express route web request endpoint to get a new dragon. This will be a GET request to the /dragon/new endpoint.
 
-app.listen(port, () => console.log(`Listening on port: ${port}`)); // Express server listening on port 3000 by default.
+module.exports = app; // Export the app object to be used in the tests.
