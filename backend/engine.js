@@ -3,10 +3,15 @@ const Generation = require("./generation.js");
 class GenerationEngine {
   constructor() {
     this.generation = null; // The current generation object
+    this.timer = null; // The timer that will build the new generation. Timer object set to null.
   }
 
   start() {
     this.buildNewGeneration();
+  }
+
+  stop() {
+    clearTimeout(this.timer);
   }
 
   buildNewGeneration() {
@@ -14,7 +19,7 @@ class GenerationEngine {
 
     console.log("new generation", this.generation);
 
-    setTimeout(() => this.buildNewGeneration(),
+    this.timer = setTimeout(() => this.buildNewGeneration(),
     this.generation.expiration.getTime() - Date.now()); // Time until the generation expires in milliseconds
   }
 }
