@@ -5,6 +5,10 @@ class GenerationEngine {
     this.generation = null; // The current generation object
   }
 
+  start() {
+    this.buildNewGeneration();
+  }
+
   buildNewGeneration() {
     this.generation = new Generation();
 
