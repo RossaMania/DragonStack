@@ -48,6 +48,7 @@
 const express = require("express");
 const GenerationEngine = require("./generation/engine.js");
 const dragonRouter = require("./api/dragon.js");
+const generationRouter = require("./api/generation.js");
 
 const app = express();
 const engine = new GenerationEngine();
@@ -55,6 +56,8 @@ const engine = new GenerationEngine();
 app.locals.engine = engine; // Set the engine object on the app.locals object to be used in the dragonRouter.
 
 app.use("/dragon", dragonRouter);
+
+app.use("/generation", generationRouter);
 
 engine.start();
 
