@@ -45,12 +45,10 @@
 //   console.log("mimar", mimar);
 // }, 15000);
 
+const express = require("express");
+
 const GenerationEngine = require("./engine.js");
 
 const engine = new GenerationEngine();
 
 engine.start();
-
-setTimeout(() => {
-  engine.stop();
-}, 20000);
