@@ -30,17 +30,27 @@
 
 
 
-const Generation = require("./generation.js");
+// const Generation = require("./generation.js");
 
-const generation = new Generation();
+// const generation = new Generation();
 
-console.log("generation", generation);
+// console.log("generation", generation);
 
-const gooby = generation.newDragon(); // This will throw an error because the generation has expired
+// const gooby = generation.newDragon(); // This will throw an error because the generation has expired
 
-console.log("gooby", gooby);
+// console.log("gooby", gooby);
+
+// setTimeout(() => {
+//   const mimar = generation.newDragon();
+//   console.log("mimar", mimar);
+// }, 15000);
+
+const GenerationEngine = require("./engine.js");
+
+const engine = new GenerationEngine();
+
+engine.start();
 
 setTimeout(() => {
-  const mimar = generation.newDragon();
-  console.log("mimar", mimar);
-}, 15000);
+  engine.stop();
+}, 20000);
