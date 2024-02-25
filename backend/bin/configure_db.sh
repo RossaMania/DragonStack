@@ -9,4 +9,3 @@ psql -U node_user dragonstackdb < ./bin/sql/generation.sql
 psql -U node_user dragonstackdb < ./bin/sql/dragon.sql
 
 echo "dragonstackdb configured!"
-```
