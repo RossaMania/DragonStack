@@ -19,7 +19,7 @@ class GenerationEngine {
   buildNewGeneration() {
     this.generation = new Generation();
 
-    GenerationTable.StoreGeneration(this.generation); // Store the new generation in the database
+    GenerationTable.storeGeneration(this.generation); // Store the new generation in the database
 
     console.log("new generation", this.generation);
 

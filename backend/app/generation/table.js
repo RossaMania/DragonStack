@@ -1,7 +1,7 @@
 const pool = require("../../databasePool.js");
 
 class GenerationTable {
-  static StoreGeneration(generation) {
+  static storeGeneration(generation) {
     pool.query(
       'INSERT INTO generation(expiration) VALUES($1) RETURNING id', // $1 is a placeholder for the value of generation.expiration in the array that follows the SQL query string
       [generation.expiration], // The value of generation.expiration
