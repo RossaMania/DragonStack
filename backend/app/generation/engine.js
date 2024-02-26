@@ -19,7 +19,12 @@ class GenerationEngine {
   buildNewGeneration() {
     this.generation = new Generation();
 
-    GenerationTable.storeGeneration(this.generation); // Store the new generation in the database
+    GenerationTable.storeGeneration(this.generation) // Store the generation in the database
+    .then(({ generationId }) => {
+      this.generation.generationId = generationId;
+      console.log("generationId", generationId);
+    }) // Set generationId & log the generationId to the console
+    .catch(error => console.error(error)) // Log the error to the console if there is one
 
     console.log("new generation", this.generation);
 
