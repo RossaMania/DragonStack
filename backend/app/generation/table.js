@@ -7,6 +7,8 @@ class GenerationTable {
       [generation.expiration], // The value of generation.expiration
       (error, response) => {
         if (error) return console.error(error);
+
+        const generationId = response.rows[0].id;
       }
       );
     }
