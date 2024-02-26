@@ -17,9 +17,9 @@ class GenerationEngine {
   }
 
   buildNewGeneration() {
-    this.generation = new Generation();
+    const generation = new Generation();
 
-    GenerationTable.storeGeneration(this.generation) // Store the generation in the database
+    GenerationTable.storeGeneration(generation) // Store the generation in the database
     .then(({ generationId }) => {
       this.generation.generationId = generationId;
       console.log("generationId", generationId);
