@@ -1,4 +1,4 @@
-const Dragon = require("../../dragon/index.js");
+const Dragon = require("../dragon/index.js");
 
 const { REFRESH_RATE, SECONDS } = require("../config.js");
 
