@@ -9,6 +9,8 @@ class GenerationTable {
         if (error) return console.error(error);
 
         const generationId = response.rows[0].id;
+
+        return generationId;
       }
       );
     }
