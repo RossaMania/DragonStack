@@ -1,5 +1,7 @@
 const Generation = require("./index.js");
 
+const GenerationTable = require("./table.js");
+
 class GenerationEngine {
   constructor() {
     this.generation = null; // The current generation object
@@ -16,6 +18,8 @@ class GenerationEngine {
 
   buildNewGeneration() {
     this.generation = new Generation();
+
+    GenerationTable.StoreGeneration(this.generation); // Store the new generation in the database
 
     console.log("new generation", this.generation);
 
