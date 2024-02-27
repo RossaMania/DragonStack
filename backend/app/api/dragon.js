@@ -3,7 +3,7 @@ const DragonTable = require("../dragon/table.js"); // Import the DragonTable cla
 
 const router = new Router();
 
-router.get("/new", (req, res) => {
+router.get("/new", (req, res, next) => {
 
   const dragon = req.app.locals.engine.generation.newDragon(); // Get a new dragon instance from the generation engine.
 
@@ -15,7 +15,7 @@ router.get("/new", (req, res) => {
 
     res.json({ dragon }); // Send the dragon as a JSON response.
   })
-  .catch(error => console.error(error));
+  .catch(error => next(error)); // Pass any errors to the error handling middleware.
 
 });
 
