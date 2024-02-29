@@ -11,7 +11,7 @@ TRAITS.forEach(TRAIT => {
       `INSERT INTO trait("traitType", "traitValue")
       VALUES($1, $2)
       RETURNING id`,
-      [traitType, traitValue],
+      [traitType, traitValues],
       (error, response) => {
         if (error) console.error(error);
 
