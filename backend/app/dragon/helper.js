@@ -27,4 +27,8 @@ return Promise.all([
 .catch(error => console.error(error));
 };
 
+// getDragonWithTraits({ dragonId: 1 })
+//   .then(dragon => console.log("dragon", dragon))
+//   .catch(error => console.error("error", error)); // for debugging
+
 module.exports = { getDragonWithTraits };
