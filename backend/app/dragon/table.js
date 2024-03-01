@@ -48,4 +48,8 @@ static getDragon({ dragonId }) {
 }
 }
 
+// DragonTable.getDragon({ dragonId: 1 })
+//   .then(dragon => console.log(dragon))
+//   .catch(error => console.error("error", error)); // for debugging
+
 module.exports = DragonTable;
