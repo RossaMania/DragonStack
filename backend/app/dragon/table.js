@@ -15,6 +15,10 @@ class DragonTable {
 
         const dragonId = response.rows[0].id;
 
+        dragon.traits.forEach(({traitType, traitValue}) => {
+          
+        })
+
         resolve({ dragonId });
       }
     )
