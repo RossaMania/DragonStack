@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Generation = () => {
 
-  const generation = { generationId: 696969, expiration: "2099-01-01" };
+  const [generation, setGeneration] = useState({ generationId: "696969", expiration: "2099-01-01" });
 
   return (
     <div>
