@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 
 const Generation = () => {
   const [generation, setGeneration] = useState({
-    generationId: " ",
-    expiration: " ",
+    generationId: "",
+    expiration: "",
   });
 
+  const MINIMUM_DELAY = 3000;
+
   useEffect(() => {
-    fetchGeneration();
+
+    let timer;
+    fetchNextGeneration();
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const fetchGeneration = () => {
@@ -19,6 +27,21 @@ const Generation = () => {
       })
       .catch((error) => console.error("error", error));
   };
+
+  const fetchNextGeneration = () => {
+    fetchGeneration();
+
+    let delay = new Date(generation.expiration).getTime() - new Date().getTime();
+
+    if (delay < MINIMUM_DELAY) {
+      delay = MINIMUM_DELAY;
+    }
+
+    timer = setTimeout(() => {
+      fetchNextGeneration();
+    }, delay);
+
+  }
 
   return (
     <div>
