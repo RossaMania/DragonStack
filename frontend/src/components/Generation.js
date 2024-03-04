@@ -8,9 +8,10 @@ const Generation = () => {
 
   const MINIMUM_DELAY = 3000;
 
+  let timer;
+
   useEffect(() => {
 
-    let timer;
     fetchNextGeneration();
 
     return () => {
