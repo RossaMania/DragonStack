@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const Generation = () => {
   const [generation, setGeneration] = useState({
-    generationId: "696969",
-    expiration: "2099-01-01",
+    generationId: " ",
+    expiration: " ",
   });
 
   useEffect(() => {
@@ -12,11 +12,8 @@ const Generation = () => {
 
   const fetchGeneration = () => {
     fetch("http://localhost:3000/generation")
-      .then((response) => {
-        console.log("response", response);
-        return response.json();
-      })
-      .then((json) => {
+      .then(response => response.json())
+      .then(json => {
         console.log("json", json);
         setGeneration(json.generation);
       })
