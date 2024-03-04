@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Generation = () => {
+  const [generation, setGeneration] = useState({
+    generationId: "696969",
+    expiration: "2099-01-01",
+  });
 
-  const [generation, setGeneration] = useState({ generationId: "696969", expiration: "2099-01-01" });
+  useEffect(() => {
+    fetchGeneration();
+  }, []);
 
-  componentDidMount =() => {
-    this.fetchGeneration();
-  };
-
-  fetchGeneration = () => {
+  const fetchGeneration = () => {
     fetch("http://localhost:3000/generation")
-      .then(response => {
+      .then((response) => {
         console.log("response", response);
-        response.json()
+        return response.json();
       })
-      .then(json => {
+      .then((json) => {
         console.log("json", json);
         setGeneration(json.generation);
       })
-      .catch(error => console.error("error", error));
+      .catch((error) => console.error("error", error));
   };
 
   return (
