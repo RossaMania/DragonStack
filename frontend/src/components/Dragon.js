@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DragonAvatar from "./DragonAvatar";
 
-const Dragon = ({ dragon: dragonProp }) => {
+const Dragon = () => {
   const [dragon, setDragon] = useState({
     dragonId: "",
     generationId: "",
