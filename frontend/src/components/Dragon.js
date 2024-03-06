@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import DragonAvatar from "./DragonAvatar";
 
 const Dragon = ({ dragon: dragonProp }) => {
   const [dragon, setDragon] = useState({
@@ -24,10 +25,8 @@ const Dragon = ({ dragon: dragonProp }) => {
 
   return (
     <div>
-      <span>Generation:{dragon.generationId}.</span>
-      <span>ID:{dragon.dragonId}.</span>
-
-      {dragon.traits.map(trait => trait.traitValue).join(", ")}
+      <h3>This is a Dragon</h3>
+      <DragonAvatar dragon={dragon} />
     </div>
   );
 
