@@ -28,13 +28,18 @@
   {
     "type": "build",
     "values": [
-      "skinny",
-      "slender",
-      "average",
-      "stocky",
-      "muscular",
-      "sporty",
-      "fat"
+    "patchy",
+    "plain",
+    "skinny",
+    "slender",
+    "sporty",
+    "spotted",
+    "stocky",
+    "striped",
+    "average",
+    "stocky",
+    "muscular",
+    "fat"
     ]
   },
   {
