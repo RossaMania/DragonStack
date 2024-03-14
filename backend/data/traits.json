@@ -16,30 +16,19 @@
   {
     "type": "pattern",
     "values": [
-      "plain",
-      "solid",
-      "striped",
-      "dotted",
       "patchy",
-      "checkered",
-      "plaid"
+      "plain",
+      "spotted",
+      "striped"
     ]
   },
   {
     "type": "build",
     "values": [
-    "patchy",
-    "plain",
-    "skinny",
-    "slender",
-    "sporty",
-    "spotted",
-    "stocky",
-    "striped",
-    "average",
-    "stocky",
-    "muscular",
-    "fat"
+      "skinny",
+      "slender",
+      "sporty",
+      "stocky"
     ]
   },
   {
