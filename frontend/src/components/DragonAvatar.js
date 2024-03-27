@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { patchy, plain, skinny, slender, sporty, spotted, stocky, striped } from "../assets";
 
@@ -68,46 +68,3 @@ const DragonAvatar = ({ dragon }) => {
 };
 
 export default DragonAvatar;
-
-
-// class DragonAvatar extends Component {
-
-//   get DragonImage() {
-
-//     const dragonPropertyMap = {};
-
-//     this.props.dragon.traits.forEach(trait => {
-//       const { traitType, traitValue } = trait;
-
-//       dragonPropertyMap[traitType] = propertyMap[traitType][traitValue];
-//     });
-
-//     const { backgroundColor, build, pattern, size } = dragonPropertyMap;
-
-//     const sizing = { width: size, height: size };
-
-//     return (
-//       <div className="dragon-avatar-image-wrapper">
-//         <div className="dragon-avatar-image-background" style={{ backgroundColor, ...sizing }}></div>
-//         <img src={build} className="dragon-avatar-image" style={{ ...sizing }} />
-//         <img src={pattern} className="dragon-avatar-image-pattern" style={{ ...sizing }} />
-//       </div>
-//     );
-//   }
-
-//   render() {
-//     const { generationId, dragonId, traits } = this.props.dragon;
-
-//     if (!dragonId) return <div></div>;
-
-//     return (
-//       <div>
-//         <span>G{generationId}.</span>
-//         <span>I{dragonId}. </span>
-//         { traits.map(trait => trait.traitValue).join(", ") }
-//       </div>
-//     );
-//   }
-// }
-
-// export default DragonAvatar;
