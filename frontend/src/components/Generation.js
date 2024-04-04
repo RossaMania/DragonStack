@@ -14,12 +14,12 @@ const Generation = () => {
         delay = MINIMUM_DELAY;
       }
 
-      setTimer(
-        setTimeout(() => {
-          // This will trigger a refetch
-          window.location.reload();
-        }, delay)
-      );
+      // setTimer(
+      //   setTimeout(() => {
+      //     // This will trigger a refetch
+      //     window.location.reload();
+      //   }, delay)
+      // );
     }
 
     return () => {
@@ -40,60 +40,6 @@ const Generation = () => {
 
 export default Generation;
 
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setGeneration } from "../slices/generationSlice.js";
-
-// const Generation = () => {
-//   const dispatch = useDispatch();
-//   const generation = useSelector((state) => state.generation.generation);
-
-//   const MINIMUM_DELAY = 3000;
-
-//   useEffect(() => {
-//     fetchNextGeneration();
-
-//     return () => {
-//       clearTimeout(timer);
-//     };
-//   }, []);
-
-//   let timer;
-
-//   const fetchGeneration = () => {
-//     fetch("http://localhost:3000/generation")
-//       .then((response) => response.json())
-//       .then(json => {
-//         console.log("json", json);
-//         dispatch(setGeneration(json.generation));
-//       })
-//       .catch((error) => console.error("error", error));
-//   };
-
-//   const fetchNextGeneration = () => {
-//     fetchGeneration();
-
-//     let delay =
-//       new Date(generation.expiration).getTime() - new Date().getTime();
-
-//     if (delay < MINIMUM_DELAY) {
-//       delay = MINIMUM_DELAY;
-//     }
-
-//     timer = setTimeout(() => {
-//       fetchNextGeneration();
-//     }, delay);
-//   };
-
-//   return (
-//     <div>
-//       <h3>Generation {generation.generationId}. Expires on:</h3>
-//       <h4>{new Date(generation.expiration).toString()}</h4>
-//     </div>
-//   )
-// }
-
-// export default Generation;
 
 // import React, { useEffect, useState } from "react";
 
