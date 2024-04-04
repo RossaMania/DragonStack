@@ -16,13 +16,10 @@
   {
     "type": "pattern",
     "values": [
-      "plain",
-      "solid",
-      "striped",
-      "dotted",
       "patchy",
-      "checkered",
-      "plaid"
+      "plain",
+      "spotted",
+      "striped"
     ]
   },
   {
@@ -30,11 +27,8 @@
     "values": [
       "skinny",
       "slender",
-      "average",
-      "stocky",
-      "muscular",
       "sporty",
-      "fat"
+      "stocky"
     ]
   },
   {
