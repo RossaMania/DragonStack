@@ -12,6 +12,11 @@ export const generationApiSlice = apiSlice.injectEndpoints({
 
 export const { useFetchGenerationQuery } = generationApiSlice;
 
+
+
+
+
+
 // export const { setGeneration } = generationSlice.actions;
 // export default generationSlice.reducer;
 
