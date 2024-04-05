@@ -1,10 +1,20 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
-import { useFetchDragonQuery } from "../slices/dragonApiSlice";
+import { useFetchDragonQuery, useCreateDragonMutation } from "../slices/dragonSlice";
 
 const Dragon = () => {
   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
+  const [createDragon] = useCreateDragonMutation();
+
+  const handleCreateDragon = async () => {
+    try {
+      await createDragon({}); // Pass any necessary data for the new dragon here
+      refetch();
+    } catch (error) {
+      console.error("Error creating dragon:", error);
+    }
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -13,12 +23,36 @@ const Dragon = () => {
     <div>
       <h3>This is a Dragon</h3>
       <DragonAvatar dragon={dragon} />
-      <Button onClick={refetch}>New Dragon!</Button>
+      <Button onClick={handleCreateDragon}>New Dragon!</Button>
     </div>
   );
 };
 
 export default Dragon;
+
+
+//The previous dragon component just using the useFetchDragonQuery--no mutation.
+// import React from "react";
+// import { Button } from "react-bootstrap";
+// import DragonAvatar from "./DragonAvatar";
+// import { useFetchDragonQuery } from "../slices/dragonApiSlice";
+
+// const Dragon = () => {
+//   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
+
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>Error: {error.message}</div>;
+
+//   return (
+//     <div>
+//       <h3>This is a Dragon</h3>
+//       <DragonAvatar dragon={dragon} />
+//       <Button onClick={refetch}>New Dragon!</Button>
+//     </div>
+//   );
+// };
+
+// export default Dragon;
 
 //The previous dragon component without Redux Toolkit Query
 // import React, { useState, useEffect } from "react";
