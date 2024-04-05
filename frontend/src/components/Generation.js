@@ -9,18 +9,44 @@ const Generation = () => {
   const generationData = useSelector((state) => state.generation);
 
   useEffect(() => {
+    console.log("useEffect called");
+
     dispatch(setLoading(true));
+
+    console.log("Dispatched setLoading with true");
+
     if (generation) {
+
+      console.log("generation is truthy:", generation);
+
       dispatch(setGeneration(generation));
       dispatch(setLoading(false));
+      console.log("Dispatched setLoading with false");
+
     } else if (error) {
+
+      console.log("generation is falsy");
       dispatch(setError(error.message));
       dispatch(setLoading(false));
+
     }
   }, [generation, error, dispatch]);
 
-  if (isLoading) return "Loading...";
-  if (error) return `Error: ${error.message}`;
+  console.log("Before isLoading check:", generationData);
+
+  if (isLoading) {
+    console.log("Loading state:", isLoading);
+    return "Loading...";
+  }
+
+  console.log("After isLoading check:", generationData);
+  
+  if (error) {
+    console.log("Error state:", error);
+    return `Error: ${error.message}`;
+  }
+
+  console.log("Before rendering:", generationData);
 
   return (
     <div>
