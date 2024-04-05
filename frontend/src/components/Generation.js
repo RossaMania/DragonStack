@@ -50,8 +50,8 @@ const Generation = () => {
 
   return (
     <div>
-      <h3>Generation {generationData.generationId}. Expires on:</h3>
-      <h4>{new Date(generationData.expiration).toString()}</h4>
+      <h3>Generation {generation.generation.generationId}. Expires on:</h3>
+      <h4>{new Date(generation.generation.expiration).toString()}</h4>
     </div>
   );
 };
