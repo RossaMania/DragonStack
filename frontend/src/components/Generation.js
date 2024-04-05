@@ -14,18 +14,18 @@ const Generation = () => {
         delay = MINIMUM_DELAY;
       }
 
-      // setTimer(
-      //   setTimeout(() => {
-      //     // This will trigger a refetch
-      //     window.location.reload();
-      //   }, delay)
-      // );
+      setTimer(
+        setTimeout(() => {
+          // This will trigger a refetch
+          window.location.reload();
+        }, delay)
+      );
     }
 
     return () => {
       clearTimeout(timer);
     };
-  }, [generation]);
+  }, [generation, timer]);
 
   if (isLoading) return "Loading...";
   if (error) return `Error: ${error.message}`;
