@@ -1,5 +1,3 @@
-import React from "react";
-
 import { patchy, plain, skinny, slender, sporty, spotted, stocky, striped } from "../assets";
 
 const propertyMap = {
