@@ -1,10 +1,10 @@
 import { apiSlice } from "./slices/apiSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import generationReducer from "./slices/generationSlice";
+import reducerWithLogs from "./slices/generationSlice";
 
 const store = configureStore({
   reducer: {
-    generation: generationReducer,
+    generation: reducerWithLogs,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
