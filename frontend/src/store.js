@@ -1,11 +1,13 @@
 import { apiSlice } from "./slices/apiSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import reducerWithLogs from "./slices/generationSlice";
+import dragonReducer from './slices/dragonSlice';
 
 const store = configureStore({
   reducer: {
-    generation: reducerWithLogs,
     [apiSlice.reducerPath]: apiSlice.reducer,
+    generation: reducerWithLogs,
+    dragon: dragonReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
