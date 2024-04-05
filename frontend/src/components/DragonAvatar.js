@@ -39,14 +39,30 @@ const propertyMap = {
 
 const DragonAvatar = ({ dragon }) => {
 
-  if (!dragon) return <div>Loading...</div>;
-  
+  console.log("Dragon:", dragon); // Add this line to check the value of dragon
+
+  if (!dragon) {
+    console.log("Dragon is undefined!"); // Add this line to check if dragon is undefined
+    return <div>Loading...</div>;
+  }
+
   const dragonPropertyMap = {};
 
   dragon.traits.forEach((trait) => {
+
     const { traitType, traitValue } = trait;
+
+    console.log("Trait:", trait); // Add this line to check the value of trait
+    console.log("Trait type:", traitType); // Add this line to check the value of traitType
+    console.log("Trait value:", traitValue); // Add this line to check the value of traitValue
+    console.log("Property map:", propertyMap); // Add this line to check the value of propertyMap
+    console.log("Trait property value:", propertyMap[traitType][traitValue]); 
+    // Add this line to check the value of the trait property in the propertyMap
+    
     dragonPropertyMap[traitType] = propertyMap[traitType][traitValue];
   });
+
+  console.log("Dragon property map:", dragonPropertyMap); // Add this line to check the value of dragonPropertyMap
 
   const { backgroundColor, build, pattern, size } = dragonPropertyMap;
 
