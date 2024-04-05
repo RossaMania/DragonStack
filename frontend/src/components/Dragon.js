@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
-import { useFetchDragonQuery, useCreateDragonMutation } from "../slices/dragonSlice";
+import { useFetchDragonQuery, useCreateDragonMutation } from "../slices/dragonApiSlice";
 
 const Dragon = () => {
   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();

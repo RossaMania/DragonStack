@@ -17,4 +17,4 @@ export const dragonApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useFetchDragonQuery, useCreateDragonMutation } = dragonApi;
+export const { useFetchDragonQuery, useCreateDragonMutation } = dragonApiSlice;

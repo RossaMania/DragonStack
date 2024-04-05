@@ -38,6 +38,9 @@ const propertyMap = {
 
 
 const DragonAvatar = ({ dragon }) => {
+
+  if (!dragon) return <div>Loading...</div>;
+  
   const dragonPropertyMap = {};
 
   dragon.traits.forEach((trait) => {
