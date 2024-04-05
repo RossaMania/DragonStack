@@ -41,8 +41,8 @@ const DragonAvatar = ({ dragon }) => {
 
   console.log("Dragon:", dragon); // Add this line to check the value of dragon
 
-  if (!dragon) {
-    console.log("Dragon is undefined!"); // Add this line to check if dragon is undefined
+  if (!dragon || !Array.isArray(dragon.traits)) { // Check if dragon or dragon.traits is undefined or not an array
+    console.log("Oops! Dragon or dragon traits are undefined!"); // Add this line to check if dragon or dragon.traits is undefined
     return <div>Loading...</div>;
   }
 
