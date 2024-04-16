@@ -31,7 +31,7 @@ const Dragon = () => {
   return (
     <div>
       <h3>This is a Dragon</h3>
-      <DragonAvatar dragon={selectedDragon} />
+      {selectedDragon && <DragonAvatar dragon={selectedDragon.dragon} />}
       <Button onClick={handleCreateDragon}>New Dragon!</Button>
     </div>
   );
