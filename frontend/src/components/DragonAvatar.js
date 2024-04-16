@@ -1,3 +1,6 @@
+
+import React from "react";
+
 import { patchy, plain, skinny, slender, sporty, spotted, stocky, striped } from "../assets";
 
 const propertyMap = {
@@ -56,9 +59,9 @@ const DragonAvatar = ({ dragon }) => {
     console.log("Trait type:", traitType); // Add this line to check the value of traitType
     console.log("Trait value:", traitValue); // Add this line to check the value of traitValue
     console.log("Property map:", propertyMap); // Add this line to check the value of propertyMap
-    console.log("Trait property value:", propertyMap[traitType][traitValue]); 
+    console.log("Trait property value:", propertyMap[traitType][traitValue]);
     // Add this line to check the value of the trait property in the propertyMap
-    
+
     dragonPropertyMap[traitType] = propertyMap[traitType][traitValue];
   });
 

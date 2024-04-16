@@ -40,7 +40,7 @@ const Generation = () => {
   }
 
   console.log("After isLoading check:", generationData);
-  
+
   if (error) {
     console.log("Error state:", error);
     return `Error: ${error.message}`;

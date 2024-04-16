@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
-import { useFetchDragonQuery, useCreateDragonMutation } from "../slices/dragonApiSlice";
+import { useFetchDragonQuery } from "../slices/dragonApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDragon } from "../slices/dragonSlice";
 
 const Dragon = () => {
+  const dispatch = useDispatch();
   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
-  const [createDragon] = useCreateDragonMutation();
+  const selectedDragon = useSelector((state) => state.dragon.selectedDragon);
 
-  const handleCreateDragon = async () => {
-    try {
-      await createDragon({}); // Pass any necessary data for the new dragon here
-      refetch();
-    } catch (error) {
-      console.error("Error creating dragon:", error);
+  useEffect(() => {
+    if (dragon) {
+      dispatch(selectDragon(dragon));
     }
+  }, [dragon, dispatch]);
+
+  const handleCreateDragon = () => {
+    refetch();
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -22,7 +26,7 @@ const Dragon = () => {
   return (
     <div>
       <h3>This is a Dragon</h3>
-      <DragonAvatar dragon={dragon} />
+      <DragonAvatar dragon={selectedDragon} />
       <Button onClick={handleCreateDragon}>New Dragon!</Button>
     </div>
   );
@@ -30,6 +34,77 @@ const Dragon = () => {
 
 export default Dragon;
 
+
+
+
+// import React from "react";
+// import { Button } from "react-bootstrap";
+// import DragonAvatar from "./DragonAvatar";
+// import { useFetchDragonQuery } from "../slices/dragonApiSlice";
+
+// const Dragon = () => {
+//   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
+
+//   const handleCreateDragon = () => {
+//     refetch();
+//   };
+
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>Error: {error.message}</div>;
+
+//   return (
+//     <div>
+//       <h3>This is a Dragon</h3>
+//       <DragonAvatar dragon={dragon} />
+//       <Button onClick={handleCreateDragon}>New Dragon!</Button>
+//     </div>
+//   );
+// };
+
+// export default Dragon;
+
+
+
+// import React from "react";
+// import { Button } from "react-bootstrap";
+// import DragonAvatar from "./DragonAvatar";
+// import {
+//   useFetchDragonQuery,
+//   useCreateDragonMutation,
+// } from "../slices/dragonApiSlice";
+
+// const Dragon = () => {
+//   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
+//   const [createDragon] = useCreateDragonMutation();
+
+//   const handleCreateDragon = async () => {
+//     try {
+//       await createDragon({
+//         dragonId: "",
+//         generationId: "",
+//         nickname: "",
+//         birthdate: "",
+//         traits: [],
+//       }); // Pass any necessary data for the new dragon here
+//       refetch();
+//     } catch (error) {
+//       console.error("Error creating dragon:", error);
+//     }
+//   };
+
+//   if (isLoading) return <div>Loading...</div>;
+//   if (error) return <div>Error: {error.message}</div>;
+
+//   return (
+//     <div>
+//       <h3>This is a Dragon</h3>
+//       <DragonAvatar dragon={dragon} />
+//       <Button onClick={handleCreateDragon}>New Dragon!</Button>
+//     </div>
+//   );
+// };
+
+// export default Dragon;
 
 //The previous dragon component just using the useFetchDragonQuery--no mutation.
 // import React from "react";
