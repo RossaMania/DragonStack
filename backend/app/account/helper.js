@@ -6,4 +6,4 @@ const hash = string => {
   return SHA256(`${APP_SECRET}${string}${APP_SECRET}`).toString();
 };
 
-modeule.exports = { hash };
+module.exports = { hash };

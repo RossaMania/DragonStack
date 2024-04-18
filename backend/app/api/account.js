@@ -2,13 +2,17 @@ const { Router } = require("express");
 
 const AccountTable = require("../account/table.js");
 
+const { hash } = require("../account/helper.js");
+
 const router = new Router();
 
 
 
 router.post("/signup", (req, res, next) => {
 const { username, password } = req.body;
-AccountTable.storeAccount({ username, password })
+const usernameHash = hash(username);
+const passwordHash = hash(password);
+AccountTable.storeAccount({ usernameHash, passwordHash })
   .then(() => res.json({ message: "Success!" }))
   .catch(error => next(error));
 });
