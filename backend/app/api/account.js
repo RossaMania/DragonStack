@@ -4,6 +4,8 @@ const AccountTable = require("../account/table.js");
 
 const { hash } = require("../account/helper.js");
 
+const Session = require("../account/session.js");
+
 const router = new Router();
 
 
@@ -24,7 +26,19 @@ AccountTable.getAccount({ usernameHash })
     throw(error);
   }
 })
-.then(() => res.json({ message: "Success!" }))
+.then(() => {
+  const session = new Session({ username });
+
+  const sessionString = session.toString();
+
+  res.cookie("sessionString", sessionString, {
+    expire: Date.now() + 3600000, // cookie expires in 1 hour
+    httpOnly: true, // cookie cannot be accessed by client side javascript
+    // secure: true // use with https cookie can only be sent over https connections
+  });
+
+  res.json({ message: "Success!" })
+})
 .catch(error => next(error));
 
 });
