@@ -2,9 +2,7 @@ const { Router } = require("express");
 const AccountTable = require("../account/table.js");
 const Session = require("../account/session.js");
 const { hash } = require("../account/helper.js");
-const { setSession, authenticatedAccount } = require('./helper');
-
-const { setSession } = require("./helper.js");
+const { setSession, authenticatedAccount } = require("./helper.js");
 
 const router = new Router();
 
