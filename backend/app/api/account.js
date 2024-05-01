@@ -4,6 +4,8 @@ const AccountTable = require("../account/table.js");
 
 const { hash } = require("../account/helper.js");
 
+const { setSession, authenticatedAccount } = require('./helper');
+
 const router = new Router();
 
 
