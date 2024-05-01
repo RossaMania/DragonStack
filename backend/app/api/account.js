@@ -1,9 +1,7 @@
 const { Router } = require("express");
-
 const AccountTable = require("../account/table.js");
-
+const Session = require("../account/session.js");
 const { hash } = require("../account/helper.js");
-
 const { setSession, authenticatedAccount } = require('./helper');
 
 const router = new Router();
@@ -53,5 +51,19 @@ AccountTable.getAccount({ usernameHash: hash(username) })
 .catch(error => next(error));
 });
 
+router.get("/logout", (req, res, next) => {
+  const { username } = Session.parse(req.cookies.sessionString);
+
+  AccountTable.updateSessionId({
+    sessionId: null,
+    usernameHash: hash(username)
+  })
+  .then(() => {
+    res.clearCookie('sessionString');
+
+    res.json({ message: "Logout successful! Yay!" });
+  })
+  .catch(error => next(error));
+});
 
 module.exports = router;
