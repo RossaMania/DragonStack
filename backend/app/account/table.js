@@ -40,8 +40,10 @@ class AccountTable {
 
           resolve();
         }
-      )
+
+      );
     });
+
   }
 
 }
