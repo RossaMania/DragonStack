@@ -23,4 +23,38 @@ const setSession = ({ username, res }) => {
   });
 };
 
-module.exports = { setSession };
+const setSessionCookie = ({ sessionString, res }) => {
+  res.cookie('sessionString', sessionString, {
+    expire: Date.now() + 3600000,
+    httpOnly: true
+    // secure: true // use with https
+  });
+};
+
+const authenticatedAccount = ({ sessionString }) => {
+  return new Promise((resolve, reject) => {
+    if (!sessionString || !Session.verify(sessionString)) {
+      const error = new Error('Invalid session');
+
+      error.statusCode = 400;
+
+      return reject(error);
+    } else {
+      const { username, id } = Session.parse(sessionString);
+
+      AccountTable.getAccount({ usernameHash: hash(username) })
+        .then(({ account }) => {
+          const authenticated = account.sessionId === id;
+
+          resolve({ account, authenticated, username });
+        })
+        .catch(error => reject(error));
+    }
+  });
+};
+
+module.exports = { setSession, authenticatedAccount };
+
+
+
+

@@ -4,3 +4,4 @@ CREATE TABLE account (
   "passwordHash" VARCHAR(64),
   "sessionId" VARCHAR(36)
 );
+
