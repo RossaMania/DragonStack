@@ -8,31 +8,29 @@ const { setSession } = require("./helper.js");
 
 const router = new Router();
 
-
-
 router.post("/signup", (req, res, next) => {
-const { username, password } = req.body;
-const usernameHash = hash(username);
-const passwordHash = hash(password);
+  const { username, password } = req.body;
+  const usernameHash = hash(username);
+  const passwordHash = hash(password);
 
-AccountTable.getAccount({ usernameHash })
-.then(({ account }) => {
-  if (!account) {
-    return AccountTable.storeAccount({ usernameHash, passwordHash })
-  } else {
-    const error = new Error("Oops! Username already exists!");
-    error.statusCode = 409;
+  AccountTable.getAccount({ usernameHash })
+    .then(({ account }) => {
+      if (!account) {
+        return AccountTable.storeAccount({ usernameHash, passwordHash });
+      } else {
+        const error = new Error("Oops! Username already exists!");
+        error.statusCode = 409;
 
-    throw(error);
-  }
-})
-.then(() => {
-  setSession({ username, res });
-
-  res.json({ message: "Success!" });
-})
-.catch(error => next(error));
-
+        throw error;
+      }
+    })
+    .then(() => {
+      return setSession({ username, res });
+    })
+    .then(({ message }) => {
+      res.json({ message });
+    })
+    .catch((error) => next(error));
 });
 
 module.exports = router;
