@@ -2,26 +2,33 @@ const Session = require("../account/session.js");
 const AccountTable = require("../account/table.js");
 const { hash } = require("../account/helper.js");
 
-const setSession = ({ username, res }) => {
+const setSession = ({ username, res, sessionId }) => {
   return new Promise((resolve, reject) => {
-    const session = new Session({ username });
+    let session, sessionString;
 
-    const sessionString = session.toString();
+    if (sessionId) {
+      sessionString = Session.sessionString({ username, id: sessionId });
 
-    AccountTable.updateSessionId({
-      sessionId: session.id,
-      usernameHash: hash(username),
-    }).then(() => {
-      res.cookie("sessionString", sessionString, {
-        expire: Date.now() + 3600000, // cookie expires in 1 hour
-        httpOnly: true, // cookie cannot be accessed by client side javascript
-        // secure: true // use with https cookie can only be sent over https connections
-      });
-      resolve({ message: "Yay! Session created!"});
-    })
-    .catch(error => reject(error));
+      setSessionCookie({ sessionString, res });
+
+      resolve({ message: "Session restored!" });
+    } else {
+      session = new Session({ username });
+      sessionString = session.toString();
+
+      AccountTable.updateSessionId({
+        sessionId: session.id,
+        usernameHash: hash(username)
+      })
+      .then(() => {
+        setSessionCookie({ sessionString, res });
+
+        resolve({ message: "Session created!" });
+      })
+      .catch(error => reject(error));
+    }
   });
-};
+}
 
 const setSessionCookie = ({ sessionString, res }) => {
   res.cookie('sessionString', sessionString, {
@@ -34,7 +41,7 @@ const setSessionCookie = ({ sessionString, res }) => {
 const authenticatedAccount = ({ sessionString }) => {
   return new Promise((resolve, reject) => {
     if (!sessionString || !Session.verify(sessionString)) {
-      const error = new Error('Invalid session');
+      const error = new Error("Oops! Invalid session!");
 
       error.statusCode = 400;
 
@@ -45,7 +52,7 @@ const authenticatedAccount = ({ sessionString }) => {
       AccountTable.getAccount({ usernameHash: hash(username) })
         .then(({ account }) => {
           const authenticated = account.sessionId === id;
-
+  
           resolve({ account, authenticated, username });
         })
         .catch(error => reject(error));
