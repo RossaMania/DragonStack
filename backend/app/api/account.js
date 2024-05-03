@@ -68,4 +68,8 @@ router.post("/logout", (req, res, next) => {
   .catch(error => next(error));
 });
 
+router.get("/authenticated", (req, res, next) => {
+  
+})
+
 module.exports = router;
