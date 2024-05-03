@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation, useRegisterMutation } from "../slices/userApiSlice.js";
 import { setCredentials } from "../slices/authSlice.js";
+import Loader from "./Loader.js";
 
 const AuthForm = () => {
 
