@@ -1,24 +1,38 @@
-import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel, Form } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/userApiSlice.js";
+import { setCredentials } from "../slices/authSlice.js";
 
 const AuthForm = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const updateUsername = (event) => {
-    setUsername(event.target.value);
+  const dispatch = useDispatch();
+
+  const [login] = useLoginMutation();
+
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
   }
 
-  const updatePassword = (event) => {
-    setPassword(event.target.value);
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
   }
 
-  const login = () => {
-    console.log("login", { username, password });
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await login({ username, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      console.log("Logged in!");
+    } catch (error) {
+      console.error("Oops! Log in failed!", error);
+    }
   }
 
-  const signup = () => {
+  const signupHandler = () => {
     console.log("signup", { username, password });
   }
 
@@ -42,9 +56,9 @@ const AuthForm = () => {
         />
       </FormGroup>
       <div>
-        <Button onClick={login}>Log In!</Button>
+        <Button onClick={loginHandler}>Log In!</Button>
         <span> or </span>
-        <Button onClick={signup}>Sign Up!</Button>
+        <Button onClick={signupHandler}>Sign Up!</Button>
       </div>
 
     </div>
