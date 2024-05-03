@@ -1,10 +1,12 @@
-import { createSlice }from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // Initial state of the auth slice.
 const initialState = {
-  userInfo: localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")) : null,
+  userInfo: localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null,
   login: false,
-}
+};
 
 // Create the auth slice with the setCredentials reducer function to set the user's credentials in the state.
 const authSlice = createSlice({
@@ -23,9 +25,9 @@ const authSlice = createSlice({
       state.userInfo = null;
       state.login = false;
       localStorage.clear();
-    }
-  }
-})
+    },
+  },
+});
 
 //Export the setCredentials reducer function from the auth slice as an action.
 export const { setCredentials, logout } = authSlice.actions;

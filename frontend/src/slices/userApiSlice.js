@@ -23,5 +23,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
-}),
-})
+  }),
+});
+
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = usersApiSlice;
