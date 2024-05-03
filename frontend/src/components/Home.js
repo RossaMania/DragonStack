@@ -20,6 +20,8 @@ const Home = () => {
 
 const logoutHandler = async () => {
 
+  console.log("Logout button clicked");
+
   try {
     await logoutApiCall().unwrap();
     dispatch(logout());

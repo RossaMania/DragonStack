@@ -53,7 +53,7 @@ AccountTable.getAccount({ usernameHash: hash(username) })
 .catch(error => next(error));
 });
 
-router.get("/logout", (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   const { username } = Session.parse(req.cookies.sessionString);
 
   AccountTable.updateSessionId({
