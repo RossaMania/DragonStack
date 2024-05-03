@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   useLoginMutation,
   useRegisterMutation,
-} from "../slices/userApiSlice.js";
+} from "../slices/usersApiSlice.js";
 import { setCredentials } from "../slices/authSlice.js";
 import Loader from "./Loader.js";
 

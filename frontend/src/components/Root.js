@@ -8,6 +8,7 @@ const Root = () => {
   const userInfo = useSelector(state => state.auth.userInfo);
 
   return userInfo ? <Home /> : <AuthForm />;
+  
 }
 
 export default Root;
