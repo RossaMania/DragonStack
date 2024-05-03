@@ -31,7 +31,7 @@ const AuthForm = () => {
     e.preventDefault();
     try {
       const res = await login({ username, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
+      dispatch(setCredentials({res}));
       console.log("Logged in!");
     } catch (error) {
       console.error("Oops! Log in failed!", error);
