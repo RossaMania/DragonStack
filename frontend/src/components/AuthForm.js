@@ -1,7 +1,7 @@
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../slices/userApiSlice.js";
+import { useLoginMutation, useRegisterMutation } from "../slices/userApiSlice.js";
 import { setCredentials } from "../slices/authSlice.js";
 
 const AuthForm = () => {
@@ -12,6 +12,8 @@ const AuthForm = () => {
   const dispatch = useDispatch();
 
   const [login] = useLoginMutation();
+
+  const [register] = useRegisterMutation();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -32,7 +34,16 @@ const AuthForm = () => {
     }
   }
 
-  const signupHandler = () => {
+  const signupHandler = async (e) => {
+    e.preventDefault();
+      try {
+        const res = await register({ username, password }).unwrap();
+        dispatch(setCredentials({ ...res }));
+      } catch (error) {
+        console.error("Oops! Sign up failed!", error);
+      }
+      console.log("Submitted!");
+    
     console.log("signup", { username, password });
   }
 
