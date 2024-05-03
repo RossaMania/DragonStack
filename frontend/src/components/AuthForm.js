@@ -1,12 +1,14 @@
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation, useRegisterMutation } from "../slices/userApiSlice.js";
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from "../slices/userApiSlice.js";
 import { setCredentials } from "../slices/authSlice.js";
 import Loader from "./Loader.js";
 
 const AuthForm = () => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,15 +16,16 @@ const AuthForm = () => {
 
   const [login, { error, isLoading }] = useLoginMutation();
 
-  const [register, { error: registerError, isLoading: registerIsLoading }] = useRegisterMutation();
+  const [register, { error: registerError, isLoading: registerIsLoading }] =
+    useRegisterMutation();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
-  }
+  };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -33,20 +36,20 @@ const AuthForm = () => {
     } catch (error) {
       console.error("Oops! Log in failed!", error);
     }
-  }
+  };
 
   const signupHandler = async (e) => {
     e.preventDefault();
-      try {
-        const res = await register({ username, password }).unwrap();
-        dispatch(setCredentials({ ...res }));
-      } catch (error) {
-        console.error("Oops! Sign up failed!", error);
-      }
-      console.log("Submitted!");
-    
+    try {
+      const res = await register({ username, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+    } catch (error) {
+      console.error("Oops! Sign up failed!", error);
+    }
+    console.log("Submitted!");
+
     console.log("signup", { username, password });
-  }
+  };
 
   return (
     <div>
@@ -66,17 +69,17 @@ const AuthForm = () => {
           placeholder="password"
           onChange={updatePassword}
         />
-        {isLoading && <Loader />}
-        {registerIsLoading && <Loader />}
+        {error && <p className="error">{error.message}</p>}
+        {registerError && <p className="error">{registerError.message}</p>}
+        {isLoading || registerIsLoading && <Loader />}
       </FormGroup>
       <div>
         <Button onClick={loginHandler}>Log In!</Button>
         <span> or </span>
         <Button onClick={signupHandler}>Sign Up!</Button>
       </div>
-
     </div>
   );
-}
+};
 
 export default AuthForm;
