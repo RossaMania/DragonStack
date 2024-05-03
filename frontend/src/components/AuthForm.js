@@ -11,9 +11,9 @@ const AuthForm = () => {
 
   const dispatch = useDispatch();
 
-  const [login] = useLoginMutation();
+  const [login, { error, isLoading }] = useLoginMutation();
 
-  const [register] = useRegisterMutation();
+  const [register, { error: registerError, isLoading: registerIsLoading }] = useRegisterMutation();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -65,6 +65,8 @@ const AuthForm = () => {
           placeholder="password"
           onChange={updatePassword}
         />
+        {isLoading && <Loader />}
+        {registerIsLoading && <Loader />}
       </FormGroup>
       <div>
         <Button onClick={loginHandler}>Log In!</Button>
