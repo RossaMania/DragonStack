@@ -24,14 +24,14 @@ const generationSlice = createSlice({
 
 export const { setGeneration, setLoading, setError } = generationSlice.actions;
 
-const reducerWithLogs = (state, action) => {
+const generationReducer = (state, action) => {
     console.log('Action received:', action);
     const newState = generationSlice.reducer(state, action);
     console.log('New state:', newState);
     return newState;
 };
 
-export default reducerWithLogs;
+export default generationReducer;
 
 
 // The generationSlice.js file is used to create a slice for the generation data.

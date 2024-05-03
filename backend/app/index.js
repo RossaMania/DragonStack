@@ -11,7 +11,7 @@ const engine = new GenerationEngine();
 
 app.locals.engine = engine; // Set the engine object on the app.locals object to be used in the dragonRouter.
 
-app.use(cors({ origin: "http://localhost:1234" }));
+app.use(cors({ origin: "http://localhost:1234", credentials: true }));
 
 app.use(express.json());
 

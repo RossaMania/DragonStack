@@ -4,6 +4,6 @@ import { BASE_URL } from "../constants";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
-  tagTypes: ["Dragon", "Generation"],
+  tagTypes: ["Dragon", "Generation", "User"],
   endpoints: () => ({}),
 });
