@@ -4,11 +4,7 @@ import Home from "./Home";
 import AuthForm from "./AuthForm";
 
 const Root = () => {
+  const login = useSelector(state => state.auth.login);
 
-  const userInfo = useSelector(state => state.auth.userInfo);
-
-  return userInfo ? <Home /> : <AuthForm />;
-
+  return login ? <Home /> : <AuthForm />;
 }
-
-export default Root;

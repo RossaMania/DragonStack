@@ -5,7 +5,7 @@ import {
   useLoginMutation,
   useRegisterMutation,
 } from "../slices/usersApiSlice.js";
-import { setCredentials } from "../slices/authSlice.js";
+import { setCredentials, setLoginStatus } from "../slices/authSlice.js";
 import Loader from "./Loader.js";
 
 const AuthForm = () => {
@@ -28,28 +28,29 @@ const AuthForm = () => {
   };
 
   const loginHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await login({ username, password }).unwrap();
-      dispatch(setCredentials({res}));
-      console.log("Logged in!");
-    } catch (error) {
-      console.error("Oops! Log in failed!", error);
-    }
-  };
+  e.preventDefault();
+  try {
+    const res = await login({ username, password }).unwrap();
+    dispatch(setCredentials({res}));
+    dispatch(setLoginStatus(true));
+    console.log("Logged in!");
+  } catch (error) {
+    dispatch(setLoginStatus(false));
+    console.error("Oops! Log in failed!", error);
+  }
+};
 
   const signupHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await register({ username, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-    } catch (error) {
-      console.error("Oops! Sign up failed!", error);
-    }
-    console.log("Submitted!");
-
-    console.log("signup", { username, password });
-  };
+  e.preventDefault();
+  try {
+    const res = await register({ username, password }).unwrap();
+    dispatch(setCredentials({ ...res }));
+    dispatch(setLoginStatus(true));
+  } catch (error) {
+    dispatch(setLoginStatus(false));
+    console.error("Oops! Sign up failed!", error);
+  }
+};
 
   return (
     <div>
