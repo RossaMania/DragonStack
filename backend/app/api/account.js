@@ -69,11 +69,11 @@ router.post("/logout", (req, res, next) => {
 });
 
 router.get("/authenticated", (req, res, next) => {
-  
+
   const { sessionString } = req.cookies;
 
   if (!sessionString || !Session.verify(sessionString)) {
-    
+
     const error = new Error("Oops! Invalid session!");
     error.statusCode = 400;
     return next(error);
