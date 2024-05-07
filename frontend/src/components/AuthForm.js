@@ -72,7 +72,7 @@ const AuthForm = () => {
         />
         {error && <p className="error">{error.message}</p>}
         {registerError && <p className="error">{registerError.message}</p>}
-        {isLoading || registerIsLoading && <Loader />}
+        {(isLoading || registerIsLoading) && <Loader />}
       </FormGroup>
       <div>
         <Button onClick={loginHandler}>Log In!</Button>
