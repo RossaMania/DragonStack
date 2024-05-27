@@ -1,16 +1,30 @@
-import React from "react";
-import { Provider } from "react-redux";
-import ReactDOM from "react-dom/client";
-
+import React, { useEffect } from "react";
+import { Provider, useDispatch } from "react-redux";
+import { render } from "react-dom";
 import store from "./store";
-
-import "./index.css";
 import Root from "./components/Root";
+import { useAuthenticatedQuery } from "./slices/usersApiSlice";
+import { setLoginStatus } from "./slices/authSlice";
+import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const App = () => {
+  const dispatch = useDispatch();
+  const { data, error } = useAuthenticatedQuery();
 
-root.render(
+  useEffect(() => {
+    if (data) {
+      dispatch(setLoginStatus(data.authenticated));
+    } else if (error) {
+      dispatch(setLoginStatus(false));
+    }
+  }, [data, error, dispatch]);
+
+  return <Root />;
+};
+
+render(
   <Provider store={store}>
-    <Root />
-  </Provider>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );

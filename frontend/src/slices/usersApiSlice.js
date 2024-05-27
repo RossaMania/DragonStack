@@ -27,10 +27,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: `${ACCOUNT_URL}/authenticated`,
         method: "GET",
+        credentials: 'include'  // Ensure cookies are sent with the request
       }),
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useAuthenticatedQuery } =
-  usersApiSlice;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useAuthenticatedQuery } = usersApiSlice;
