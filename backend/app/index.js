@@ -9,7 +9,7 @@ const accountRouter = require("./api/account.js");
 const app = express();
 const engine = new GenerationEngine();
 
-app.locals.engine = engine; // Set the engine object on the app.locals object to be used in the dragonRouter.
+app.locals.engine = engine;
 
 app.use(cors({ origin: "http://localhost:1234", credentials: true }));
 
@@ -34,4 +34,4 @@ app.use((err, req, res, next) => {
 
 engine.start();
 
-module.exports = app; // Export the app object to be used in the tests.
+module.exports = app;
