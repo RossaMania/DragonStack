@@ -43,4 +43,11 @@ const logoutHandler = async () => {
   );
 };
 
+fetch("http://localhost:3000/account/dragons", {
+  credentials: "include",
+})
+  .then((response) => response.json())
+  .then((json) => console.log("Account Dragons", json))
+  .catch((error) => console.error("Error fetching account dragons", error));
+
 export default Home;
