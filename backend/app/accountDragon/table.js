@@ -30,5 +30,4 @@ class AccountDragonTable {
   }
 }
 
-
  module.exports = AccountDragonTable;
