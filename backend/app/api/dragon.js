@@ -1,22 +1,32 @@
 const { Router } = require("express");
 const DragonTable = require("../dragon/table.js"); // Import the DragonTable class from the table.js file in the dragon directory.
+const AccountDragonTable = require("../accountDragon/table.js");
+const { authenticatedAccount } = require("./helper.js");
 
 const router = new Router();
 
 router.get("/new", (req, res, next) => {
 
-  const dragon = req.app.locals.engine.generation.newDragon(); // Get a new dragon instance from the generation engine.
+  let accountId, dragon;
 
-  DragonTable.storeDragon(dragon) // Store the dragon in the database.
+  authenticatedAccount({ sessionString: req.cookies.sessionString })
+  .then(({ account }) => {
+    accountId = account.id;
+
+    dragon = req.app.locals.engine.generation.newDragon(); // Get a new dragon instance from the generation engine.
+
+    return DragonTable.storeDragon(dragon);
+  })
   .then(({ dragonId }) => {
-    console.log('dragonId', dragonId);
-
     dragon.dragonId = dragonId;
 
-    res.json({ dragon }); // Send the dragon as a JSON response.
+    return AccountDragonTable.storeAccountDragon({ accountId, dragonId });
+  })
+  .then(() => {
+    res.json({ dragon });
   })
   .catch(error => next(error)); // Pass any errors to the error handling middleware.
 
 });
 
-module.exports = router; // Export the router object..
+module.exports = router;
