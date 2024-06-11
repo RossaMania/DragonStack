@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Generation from "./Generation.js";
 import Dragon from "./Dragon.js";
+import AccountDragons from "./AccountDragons.js";
 
 import { useLogoutMutation } from "../slices/usersApiSlice.js";
 import { logout } from "../slices/authSlice.js";
@@ -39,6 +40,8 @@ const logoutHandler = async () => {
       <h2>Dragon Stack</h2>
       <Generation />
       <Dragon />
+      <br />
+      <AccountDragons />
     </div>
   );
 };
