@@ -4,6 +4,7 @@ const AccountDragonTable = require("../accountDragon/table.js");
 const Session = require("../account/session.js");
 const { hash } = require("../account/helper.js");
 const { setSession, authenticatedAccount } = require("./helper.js");
+const { getDragonWithTraits } = require("../dragon/helper.js");
 
 const router = new Router();
 
@@ -84,8 +85,15 @@ router.get("/dragons", (req, res, next) => {
     })
   })
   .then(({ accountDragons }) => {
-    res.json({ accountDragons });
+    return Promise.all(
+      accountDragons.map(accountDragon => {
+        return getDragonWithTraits({ dragonId: accountDragon.dragonId });
+      })
+    );
   })
+    .then(dragons => {
+      res.json({ dragons })
+    })
   .catch(error => next(error));
 });
 
