@@ -5,10 +5,13 @@ export const dragonApiSlice = apiSlice.injectEndpoints({
     fetchDragon: builder.query({
       query: () => "/dragon/new",
     }),
+    fetchAccountDragons: builder.query({
+      query: () => "/account/dragons",
+    }),
   }),
 });
 
-export const { useFetchDragonQuery } = dragonApiSlice;
+export const { useFetchDragonQuery, useFetchAccountDragonsQuery } = dragonApiSlice;
 
 // import { apiSlice } from "./apiSlice";
 
