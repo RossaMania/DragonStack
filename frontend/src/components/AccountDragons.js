@@ -1,10 +1,11 @@
-import React from 'react';
-import { useFetchAccountDragonsQuery } from '../slices/dragonApiSlice';
+import React from "react";
+import Loader from "./Loader";
+import { useFetchAccountDragonsQuery } from "../slices/dragonApiSlice";
 
 const AccountDragons = () => {
-  const { data, error, isLoading } = useFetchAccountDragonsQuery();
+  const { data = { dragons: [] }, error, isLoading } = useFetchAccountDragonsQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
