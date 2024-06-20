@@ -85,6 +85,7 @@ router.get("/dragons", (req, res, next) => {
     })
   })
   .then(({ accountDragons }) => {
+    console.log(`Account dragons for accountId ${account.id}:`, accountDragons); // Debugging line
     return Promise.all(
       accountDragons.map(accountDragon => {
         return getDragonWithTraits({ dragonId: accountDragon.dragonId });
@@ -92,6 +93,7 @@ router.get("/dragons", (req, res, next) => {
     );
   })
     .then(dragons => {
+      console.log('Dragons retrieved:', dragons); // Debugging line
       res.json({ dragons })
     })
   .catch(error => next(error));

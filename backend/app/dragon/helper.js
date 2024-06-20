@@ -16,13 +16,17 @@ return Promise.all([
       (error, response) => {
         if (error) return reject(error);
 
+        console.log(`Traits for dragonId ${dragonId}:`, response.rows); // Debugging line
         resolve(response.rows);
       }
     )
   })
 ])
 .then(([dragon, dragonTraits]) => {
+
+  console.log(`Dragon details for dragonId ${dragonId}:`, dragon); // Debugging line
   return new Dragon({ ...dragon, dragonId, traits: dragonTraits });
+
 })
 .catch(error => console.error(error));
 };
