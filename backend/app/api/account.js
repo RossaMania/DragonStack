@@ -86,17 +86,17 @@ router.get("/dragons", (req, res, next) => {
       console.log('Authenticated account:', account);
       return AccountDragonTable.getAccountDragons({
         accountId: account.id
+      })
+      .then(({ accountDragons }) => {
+        console.log(`Account dragons for accountId ${account.id}:`, accountDragons); // Debugging line
+        return Promise.all(
+          accountDragons.map(accountDragon => {
+            return getDragonWithTraits({ dragonId: accountDragon.dragonId });
+          })
+        ).then(dragons => ({ dragons, account })); // Include account in the resolved value
       });
     })
-    .then(({ accountDragons }) => {
-      console.log(`Account dragons for accountId ${account.id}:`, accountDragons); // Debugging line
-      return Promise.all(
-        accountDragons.map(accountDragon => {
-          return getDragonWithTraits({ dragonId: accountDragon.dragonId });
-        })
-      );
-    })
-    .then(dragons => {
+    .then(({ dragons, account }) => {
       console.log('Dragons retrieved:', dragons); // Debugging line
       res.json({ dragons });
     })
