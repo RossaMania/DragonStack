@@ -79,24 +79,31 @@ router.get("/authenticated", (req, res, next) => {
 
 router.get("/dragons", (req, res, next) => {
   authenticatedAccount({ sessionString: req.cookies.sessionString })
-  .then(({ account }) => {
-    return AccountDragonTable.getAccountDragons({
-      accountId: account.id
+    .then(({ account }) => {
+      if (!account) {
+        throw new Error('Account not found or session invalid');
+      }
+      console.log('Authenticated account:', account);
+      return AccountDragonTable.getAccountDragons({
+        accountId: account.id
+      });
     })
-  })
-  .then(({ accountDragons }) => {
-    console.log(`Account dragons for accountId ${account.id}:`, accountDragons); // Debugging line
-    return Promise.all(
-      accountDragons.map(accountDragon => {
-        return getDragonWithTraits({ dragonId: accountDragon.dragonId });
-      })
-    );
-  })
+    .then(({ accountDragons }) => {
+      console.log(`Account dragons for accountId ${account.id}:`, accountDragons); // Debugging line
+      return Promise.all(
+        accountDragons.map(accountDragon => {
+          return getDragonWithTraits({ dragonId: accountDragon.dragonId });
+        })
+      );
+    })
     .then(dragons => {
       console.log('Dragons retrieved:', dragons); // Debugging line
-      res.json({ dragons })
+      res.json({ dragons });
     })
-  .catch(error => next(error));
+    .catch(error => {
+      console.error('Error fetching account dragons:', error);
+      next(error);
+    });
 });
 
 module.exports = router;
