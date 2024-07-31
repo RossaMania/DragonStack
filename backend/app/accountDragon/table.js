@@ -23,6 +23,7 @@ class AccountDragonTable {
         (error, response) => {
           if (error) return reject(error);
 
+          console.log('Account Dragons from DB:', response.rows); // Debugging line
           resolve({ accountDragons: response.rows });
         }
       );
