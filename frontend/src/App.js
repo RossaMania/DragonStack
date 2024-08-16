@@ -16,8 +16,11 @@ const App = () => {
     }
   }, [data, error, dispatch]);
 
-  return <Root />;
-};
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 
 export default App
 

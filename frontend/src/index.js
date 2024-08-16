@@ -21,8 +21,8 @@ import AccountDragons from "./components/AccountDragons";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<Root />} />
-      <Route path="/account-dragons" element={<AccountDragons />} />
+      <Route index path="/" element={<Root />} />
+      <Route path="account-dragons" element={<AccountDragons />} />
     </Route>
 
   )
@@ -32,6 +32,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <RouterProvider router={router} />
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
