@@ -19,9 +19,9 @@ const AccountDragons = () => {
           data.dragons.map((dragon) => {
             console.log("Rendering dragon:", dragon);
             return (
-              <li key={dragon.dragonId}>
+              <div key={dragon.dragonId}>
                 <AccountDragonRow dragon={dragon} />
-              </li>
+              </div>
             );
           })
         ) : (
