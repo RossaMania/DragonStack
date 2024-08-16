@@ -9,8 +9,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { createBrowserHistory } from "history";
-
 import store from "./store";
 import './index.css';
 
@@ -22,7 +20,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index path="/" element={<Root />} />
-      <Route path="account-dragons" element={<AccountDragons />} />
+      <Route path="/account-dragons" element={<AccountDragons />} />
     </Route>
 
   )

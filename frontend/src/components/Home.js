@@ -7,6 +7,7 @@ import Dragon from "./Dragon.js";
 import { useLogoutMutation } from "../slices/usersApiSlice.js";
 import { logout } from "../slices/authSlice.js";
 import { Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -39,6 +40,7 @@ const logoutHandler = async () => {
       <h2>Dragon Stack</h2>
       <Generation />
       <Dragon />
+      <NavLink to="/account-dragons">Account Dragons</NavLink>
     </div>
   );
 };
