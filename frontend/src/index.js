@@ -9,7 +9,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import store from "./store";
@@ -18,8 +17,6 @@ import './index.css';
 import App from "./App";
 import Root from "./components/Root";
 import AccountDragons from "./components/AccountDragons";
-
-const history = createBrowserHistory();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,8 +31,6 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <HistoryRouter history={history} >
     <RouterProvider router={router} />
-    </HistoryRouter>
   </Provider>
 );
