@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
 import { render } from "react-dom";
+
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
 import store from "./store";
 import Root from "./components/Root";
 import { useAuthenticatedQuery } from "./slices/usersApiSlice";
