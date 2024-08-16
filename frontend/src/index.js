@@ -14,9 +14,23 @@ import { createBrowserHistory } from "history";
 import store from "./store";
 import './index.css';
 
+import App from "./App";
+import Root from "./components/Root";
+import AccountDragons from "./components/AccountDragons";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<Root />} />
+      <Route path="/account-dragons" element={<AccountDragons />} />
+    </Route>
+
+  )
+);
+
 render(
   <Provider store={store}>
-    <App />
+    <RouterProvider router={router} />
   </Provider>,
   document.getElementById('root')
 );
