@@ -15,11 +15,11 @@ const AccountDragons = () => {
       <h1>Account Dragons</h1>
       <ul>
         {data && data.dragons ? (
-          data.dragons.map((dragon) => {
+          data.dragons.map((dragon) => (
             <li key={dragon.dragonId}>
               <AccountDragonRow dragon={dragon} />
             </li>
-          })
+          ))
         ) : (
           <p>No dragons available.</p>
         )}
