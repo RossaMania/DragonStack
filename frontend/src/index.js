@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import store from "./store";
