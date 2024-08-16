@@ -18,6 +18,8 @@ import App from "./App";
 import Root from "./components/Root";
 import AccountDragons from "./components/AccountDragons";
 
+const history = createBrowserHistory();
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -31,6 +33,8 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    <HistoryRouter history={history} >
     <RouterProvider router={router} />
+    </HistoryRouter>
   </Provider>
 );
