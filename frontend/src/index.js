@@ -1,6 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { render } from "react-dom";
 
 import {
   createBrowserRouter,
@@ -28,9 +28,10 @@ const router = createBrowserRouter(
   )
 );
 
-render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <Provider store={store}>
     <RouterProvider router={router} />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
