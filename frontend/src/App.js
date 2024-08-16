@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAuthenticatedQuery } from "./slices/usersApiSlice";
 import { setLoginStatus } from "./slices/authSlice";
-import Root from "./components/Root";
+import { Outlet } from "react-router-dom";
+
 
 const App = () => {
   const dispatch = useDispatch();
