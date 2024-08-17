@@ -1,6 +1,7 @@
 import React from "react";
 import { useFetchAccountDragonsQuery } from "../slices/dragonApiSlice";
 import AccountDragonRow from "./AccountDragonRow";
+import { NavLink } from "react-router-dom";
 
 const AccountDragons = () => {
   const { data, error, isLoading } = useFetchAccountDragonsQuery();
@@ -28,6 +29,7 @@ const AccountDragons = () => {
           <p>No dragons available.</p>
         )}
       </ul>
+      <NavLink to="/">Home</NavLink>
     </div>
   );
 };

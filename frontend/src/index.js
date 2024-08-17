@@ -1,30 +1,38 @@
-import React, { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
-import { render } from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
 import store from "./store";
-import Root from "./components/Root";
-import { useAuthenticatedQuery } from "./slices/usersApiSlice";
-import { setLoginStatus } from "./slices/authSlice";
 import './index.css';
 
-const App = () => {
-  const dispatch = useDispatch();
-  const { data, error } = useAuthenticatedQuery();
+import App from "./App";
+import Root from "./components/Root";
+import AccountDragons from "./components/AccountDragons";
+import AuthRoute from "./components/AuthRoute";
 
-  useEffect(() => {
-    if (data) {
-      dispatch(setLoginStatus(data.authenticated));
-    } else if (error) {
-      dispatch(setLoginStatus(false));
-    }
-  }, [data, error, dispatch]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index path="/" element={<Root />} />
 
-  return <Root />;
-};
+      <Route path="" element={<AuthRoute />}>
+      <Route path="/account-dragons" element={<AccountDragons />} />
+      </Route>
+    </Route>
 
-render(
+  )
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+    <RouterProvider router={router} />
+  </Provider>
 );
