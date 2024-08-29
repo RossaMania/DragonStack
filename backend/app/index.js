@@ -11,25 +11,22 @@ const engine = new GenerationEngine();
 
 app.locals.engine = engine;
 
+app.options('*', cors({ origin: "http://localhost:1234", credentials: true }));
+
 app.use(cors({ origin: "http://localhost:1234", credentials: true }));
-
 app.use(express.json());
-
 app.use(cookieParser());
 
 app.use("/account", accountRouter);
-
 app.use("/dragon", dragonRouter);
-
 app.use("/generation", generationRouter);
 
 app.use((err, req, res, next) => {
-
   const statusCode = err.statusCode || 500;
-
-  res.json({
-    type: 'error', message: err.message
-  })
+  res.status(statusCode).json({
+    type: 'error',
+    message: err.message,
+  });
 });
 
 engine.start();
