@@ -1,11 +1,12 @@
 const express = require("express");
-const apiProxy = require("../../middleware/proxy.js");
 const cors = require("cors");
+const apiProxy = require("../../middleware/proxy.js");
 const cookieParser = require("cookie-parser")
 const GenerationEngine = require("./generation/engine.js");
 const dragonRouter = require("./api/dragon.js");
 const generationRouter = require("./api/generation.js");
 const accountRouter = require("./api/account.js");
+
 
 const app = express();
 const engine = new GenerationEngine();
