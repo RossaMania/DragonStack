@@ -1,12 +1,11 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-module.exports = (app) => {
-  app.use(
-    '/account',
-    createProxyMiddleware({
-      target: 'http://localhost:3000',
-      changeOrigin: true,
-      secure: false,
-    })
-  );
-};
+const apiProxy = createProxyMiddleware({
+  target: "http://localhost:3000",
+  changeOrigin: true,
+  secure: false,
+});
+
+module.exports = apiProxy;
+
+// 'apiProxy' is now ready to be used as middleware in a server.
