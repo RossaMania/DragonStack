@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "proxy": "http://localhost:3000",
   "scripts": {
     "clean": "rm -rf dist .cache",
     "start": "npm run clean && npx parcel src/index.html",
