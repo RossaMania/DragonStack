@@ -6,8 +6,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     // crendentials: "include" will face CORS if credential is not provided
-    // credentials: "include"
-    credentials: "same-origin",
+    credentials: "include"
   }),
   tagTypes: ["Dragon", "Generation", "User"],
   endpoints: () => ({}),

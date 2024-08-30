@@ -12,17 +12,32 @@ const engine = new GenerationEngine();
 
 app.locals.engine = engine;
 
-// Use the proxy middleware
-app.use("/api", apiProxy);
-
+// Apply CORS middleware before routes
 app.use(
   cors({
-    origin: "http://localhost:1234", credentials: true
+    origin: "http://localhost:1234",
+    credentials: true,
   })
 );
 
 app.use(express.json());
 app.use(cookieParser());
+
+// Debugging middleware to log request and response headers
+app.use((req, res, next) => {
+  console.log("Request Headers:", req.headers);
+  next();
+});
+
+app.use((req, res, next) => {
+  res.on("finish", () => {
+    console.log("Response Headers:", res.getHeaders());
+  });
+  next();
+});
+
+// Use the proxy middleware
+app.use("/api", apiProxy);
 
 app.use("/account", accountRouter);
 app.use("/dragon", dragonRouter);
@@ -43,7 +58,7 @@ app.use((err, req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
   res.status(statusCode).json({
-    type: 'error',
+    type: "error",
     message: err.message,
   });
 });
