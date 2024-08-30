@@ -1,5 +1,5 @@
 const express = require("express");
-const apiProxy = require("../../proxy.js");
+const apiProxy = require("../../middleware/proxy.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser")
 const GenerationEngine = require("./generation/engine.js");
@@ -13,7 +13,7 @@ const engine = new GenerationEngine();
 app.locals.engine = engine;
 
 // Use the proxy middleware
-app.use('/api', apiProxy);
+app.use("/api", apiProxy);
 
 app.use(
   cors({
