@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/RossaMania/DragonStack/issues"
   },
-  "homepage": "https://github.com/RossaMania/DragonStack#readme"
+  "homepage": "https://github.com/RossaMania/DragonStack#readme",
+  "dependencies": {
+    "http-proxy-middleware": "^3.0.0"
+  }
 }

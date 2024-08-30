@@ -6,7 +6,7 @@
   "proxy": "http://localhost:3000",
   "scripts": {
     "clean": "rm -rf dist .cache",
-    "start": "npm run clean && npx parcel src/index.html",
+    "start": "npm run clean && npx parcel src/index.html --port 1234 --open && node proxy.js",
     "dev": "npm run start"
   },
   "keywords": [],
