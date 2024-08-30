@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const apiProxy = require("../../middleware/proxy.js");
 const cookieParser = require("cookie-parser")
 const GenerationEngine = require("./generation/engine.js");
 const dragonRouter = require("./api/dragon.js");
@@ -37,19 +36,16 @@ app.use((req, res, next) => {
   next();
 });
 
-// Use the proxy middleware
-app.use("/api", apiProxy);
-
 app.use("/account", accountRouter);
 app.use("/dragon", dragonRouter);
 app.use("/generation", generationRouter);
 
 
 // Preflight handling (OPTIONS requests)
-app.options("*", cors({
-  origin: "http://localhost:1234",
-  credentials: true
-}));
+// app.options("*", cors({
+//   origin: "http://localhost:1234",
+//   credentials: true
+// }));
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
