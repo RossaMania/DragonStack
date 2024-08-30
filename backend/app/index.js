@@ -1,5 +1,5 @@
 const express = require("express");
-const apiProxy = require("../../proxy");
+const apiProxy = require("../../proxy.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser")
 const GenerationEngine = require("./generation/engine.js");
@@ -30,7 +30,7 @@ app.use("/generation", generationRouter);
 
 
 // Preflight handling (OPTIONS requests)
-app.options('*', cors({
+app.options("*", cors({
   origin: "http://localhost:1234",
   credentials: true
 }));

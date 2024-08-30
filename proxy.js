@@ -4,6 +4,14 @@ const apiProxy = createProxyMiddleware({
   target: "http://localhost:3000",
   changeOrigin: true,
   secure: false,
+   onProxyReq: (proxyReq, req, res) => {
+    proxyReq.setHeader('Access-Control-Allow-Origin', 'http://localhost:1234');
+    proxyReq.setHeader('Access-Control-Allow-Credentials', 'true');
+  },
+  onProxyRes: (proxyRes, req, res) => {
+    proxyRes.headers['Access-Control-Allow-Origin'] = 'http://localhost:1234';
+    proxyRes.headers['Access-Control-Allow-Credentials'] = 'true';
+  }
 });
 
 module.exports = apiProxy;
