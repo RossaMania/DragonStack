@@ -6,14 +6,14 @@ const AccountDragonRow = ({ dragon }) => {
 
 
   // A state variable to store the nickname of the dragon.
-  [nickname, setNickname] = useState(dragon.nickname);
+  const [nickname, setNickname] = useState(dragon.nickname);
 
   // A state variable to store the edit mode of the dragon.
-  [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
 
 
   // A function that will toggle the edit mode of the dragon.
-  const toggleEdit = () => {
+  const toggleEdit = (e) => {
     e.preventDefault();
     setEdit(!edit);
     console.log("Toggle edit mode:", edit);
@@ -21,23 +21,35 @@ const AccountDragonRow = ({ dragon }) => {
 
   // A function that will save the nickname of the dragon.
   const save = () => {
-    setEdit(false);
-    console.log("Save nickname:", nickname);
-  }
+  console.log("Attempting to save nickname:", nickname);
+  fetch("http://localhost:3000/dragon/update", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ dragonId: dragon.dragonId, nickname })
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log("Server response:", json);
+      if (json.type === "error") {
+        alert(json.message);
+        console.error("Error from server:", json.message);
+      } else {
+        console.log("Dragon updated successfully:", json);
+      }
+    })
+    .catch((error) => {
+      alert("An error occurred:", error.message);
+      console.error("Error updating dragon:", error);
+    });
+};
 
   // A function that will update the nickname of the dragon.
-  const updateNickname = (event) => {
+  const updateNickname = (e) => {
     e.preventDefault();
-    setNickname(event.target.value);
+    setNickname(e.target.value);
     console.log("Update nickname:", nickname);
   }
-
-  // If the edit mode is true, we need to display an input field with the nickname of the dragon.
-  // If the edit mode is true, we need to display a "Save" button.
-
-
-  // If the edit mode is false, we need to display the nickname of the dragon.
-  // If the edit mode is false, we need to display an "Edit" button.
 
   if (edit) {
     return (
