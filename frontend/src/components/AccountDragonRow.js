@@ -36,6 +36,7 @@ const AccountDragonRow = ({ dragon }) => {
         console.error("Error from server:", json.message);
       } else {
         console.log("Dragon updated successfully:", json);
+        setEdit(false);
       }
     })
     .catch((error) => {
@@ -51,25 +52,12 @@ const AccountDragonRow = ({ dragon }) => {
     console.log("Update nickname:", nickname);
   }
 
-  if (edit) {
-    return (
-      <div>
-        <input
-          type="text"
-          value={nickname}
-          onChange={updateNickname}
-          disabled={!edit}
-        />
-        <Button onClick={save}>Save</Button>
-      </div>
-    );
-  }
 
   return (
     <div>
-      <div>{dragon.nickname}</div>
-      <Button onClick={toggleEdit}>Edit</Button>
+      <input type="text" value={nickname} onChange={updateNickname} disabled={!edit} />
       <DragonAvatar dragon={dragon} />
+      {edit ? <Button onClick={save}>Save</Button> : <Button onClick={toggleEdit}>Edit</Button>}
     </div>
   );
 
