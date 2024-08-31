@@ -8,6 +8,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         url: `${ACCOUNT_URL}/login`,
         method: "POST",
         body: data,
+        credentials: "include"  // Ensure cookies are sent with the request
       }),
     }),
     register: builder.mutation({
@@ -15,19 +16,21 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         url: `${ACCOUNT_URL}/signup`,
         method: "POST",
         body: data,
+        credentials: "include"  // Ensure cookies are sent with the request
       }),
     }),
     logout: builder.mutation({
       query: () => ({
         url: `${ACCOUNT_URL}/logout`,
         method: "POST",
+        credentials: "include"  // Ensure cookies are sent with the request
       }),
     }),
     authenticated: builder.query({
       query: () => ({
         url: `${ACCOUNT_URL}/authenticated`,
         method: "GET",
-        credentials: 'include'  // Ensure cookies are sent with the request
+        credentials: "include"  // Ensure cookies are sent with the request
       }),
     }),
   }),
