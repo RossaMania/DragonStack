@@ -108,12 +108,13 @@ router.get("/dragons", (req, res, next) => {
 
 router.get("/info", (req, res, next) => {
   authenticatedAccount({ sessionString: req.cookies.sessionString })
-    .then(({ account }) => {
-      res.json({ info: { balance: account.balance } });
+    .then(({ account, username }) => {
+      res.json({ info: { balance: account.balance, username } });
     })
-    .catch(error => next(error));
-
-
+    .catch(error => {
+      console.error("Error fetching account info:", error);
+      next(error)
+    });
 });
 
 module.exports = router;
