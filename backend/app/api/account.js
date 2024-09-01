@@ -63,7 +63,7 @@ router.post("/logout", (req, res, next) => {
     usernameHash: hash(username)
   })
   .then(() => {
-    res.clearCookie('sessionString');
+    res.clearCookie("sessionString");
 
     res.json({ message: "Logout successful! Yay!" });
   })
@@ -81,9 +81,9 @@ router.get("/dragons", (req, res, next) => {
   authenticatedAccount({ sessionString: req.cookies.sessionString })
     .then(({ account }) => {
       if (!account) {
-        throw new Error('Account not found or session invalid');
+        throw new Error("Account not found or session invalid");
       }
-      console.log('Authenticated account:', account);
+      console.log("Authenticated account:", account);
       return AccountDragonTable.getAccountDragons({
         accountId: account.id
       })
@@ -97,13 +97,23 @@ router.get("/dragons", (req, res, next) => {
       });
     })
     .then(({ dragons, account }) => {
-      console.log('Dragons retrieved:', dragons); // Debugging line
+      console.log("Dragons retrieved:", dragons); // Debugging line
       res.json({ dragons });
     })
     .catch(error => {
-      console.error('Error fetching account dragons:', error);
+      console.error("Error fetching account dragons:", error);
       next(error);
     });
+});
+
+router.get("/info", (req, res, next) => {
+  authenticatedAccount({ sessionString: req.cookies.sessionString })
+    .then(({ account }) => {
+      res.json({ info: { balance: account.balance } });
+    })
+    .catch(error => next(error));
+
+
 });
 
 module.exports = router;
