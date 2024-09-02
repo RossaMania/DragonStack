@@ -34,7 +34,7 @@ class DragonTable {
   static getDragon({ dragonId }) {
     return new Promise((resolve, reject) => {
       pool.query(
-        `SELECT birthdate, nickname, "generationId"
+        `SELECT birthdate, nickname, "generationId", "isPublic", "saleValue"
       FROM dragon
       WHERE dragon.id = $1`,
         [dragonId],
@@ -50,11 +50,11 @@ class DragonTable {
     });
   }
 
-  static updateDragon({ dragonId, nickname }) {
+  static updateDragon({ dragonId, nickname, isPublic, saleValue }) {
     return new Promise((resolve, reject) => {
       pool.query(
-        "UPDATE dragon SET nickname = $1 WHERE id = $2",
-        [nickname, dragonId],
+        "UPDATE dragon SET nickname = $1, 'isPublic' = $2, 'saleValue' = $3 WHERE id = $4",
+        [nickname, isPublic, saleValue, dragonId],
         (error, response) => {
           if (error) return reject(error);
 
