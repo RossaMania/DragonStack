@@ -10,8 +10,8 @@ const AccountInfo = () => {
   return (
     <div>
       <h3>Account Info</h3>
-      <div>Username: {accountInfo.info.username}</div>
-      <div>Balance: {accountInfo.info.balance}</div>
+      <h4>Username: {accountInfo.info.username}</h4>
+      <h4>Balance: {accountInfo.info.balance}</h4>
     </div>
   );
 };

@@ -25,9 +25,9 @@ const generationSlice = createSlice({
 export const { setGeneration, setLoading, setError } = generationSlice.actions;
 
 const generationReducer = (state, action) => {
-    console.log('Action received:', action);
+    console.log("Action received:", action);
     const newState = generationSlice.reducer(state, action);
-    console.log('New state:', newState);
+    console.log("New state:", newState);
     return newState;
 };
 
