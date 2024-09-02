@@ -3,12 +3,16 @@ import { apiSlice } from "./apiSlice";
 export const dragonApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     fetchDragon: builder.query({
-      query: () => "/dragon/new",
+      query: () => ({
+      url: "/dragon/new",
       method: "GET",
+      }),
     }),
     fetchAccountDragons: builder.query({
-      query: () => "/account/dragons",
+      query: () => ({
+      url: "/account/dragons",
       method: "GET",
+      }),
     }),
   }),
 });

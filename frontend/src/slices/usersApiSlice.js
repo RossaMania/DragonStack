@@ -33,7 +33,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         credentials: "include"  // Ensure cookies are sent with the request
       }),
     }),
-    accountInfo: builder.query({
+    fetchAccountInfo: builder.query({
       query: () => ({
         url: `${ACCOUNT_URL}/info`,
         method: "GET",
@@ -43,4 +43,4 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useAuthenticatedQuery, useAccountInfoQuery } = usersApiSlice;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useAuthenticatedQuery, useFetchAccountInfoQuery } = usersApiSlice;
