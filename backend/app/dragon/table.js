@@ -3,13 +3,13 @@ const DragonTraitTable = require("../dragonTrait/table.js");
 
 class DragonTable {
   static storeDragon(dragon) {
-    const { birthdate, nickname, generationId } = dragon;
+    const { birthdate, nickname, generationId, isPublic, saleValue } = dragon;
 
     return new Promise((resolve, reject) => {
       pool.query(
-        `INSERT INTO dragon(birthdate, nickname, "generationId")
-      VALUES($1, $2, $3) RETURNING id`,
-        [birthdate, nickname, generationId],
+        `INSERT INTO dragon(birthdate, nickname, "generationId", "isPublic", "saleValue")
+      VALUES($1, $2, $3, $4, $5) RETURNING id`,
+        [birthdate, nickname, generationId, isPublic, saleValue],
         (error, response) => {
           if (error) return reject(error);
 
