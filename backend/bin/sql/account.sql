@@ -3,6 +3,6 @@ CREATE TABLE account (
   "usernameHash" VARCHAR(64),
   "passwordHash" VARCHAR(64),
   "sessionId" VARCHAR(36),
-  balance INTEGER NOT NULL,
+  balance INTEGER NOT NULL
 );
 
