@@ -4,6 +4,7 @@ import DragonAvatar from "./DragonAvatar";
 import { useFetchDragonQuery } from "../slices/dragonApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDragon } from "../slices/dragonSlice";
+import Loader from "./Loader";
 
 const Dragon = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Dragon = () => {
 
   console.log("Dragon in parent component:", dragon);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (

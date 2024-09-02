@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchGenerationQuery } from "../slices/generationApiSlice";
 import { setGeneration, setLoading, setError } from "../slices/generationSlice";
+import Loader from "./Loader";
 
 const Generation = () => {
   const dispatch = useDispatch();
@@ -36,10 +37,11 @@ const Generation = () => {
 
   if (isLoading) {
     console.log("Loading state:", isLoading);
-    return "Loading...";
+    return <Loader />;
   }
 
   console.log("After isLoading check:", generationData);
+
 
   if (error) {
     console.log("Error state:", error);
