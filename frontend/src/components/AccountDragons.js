@@ -2,11 +2,12 @@ import React from "react";
 import { useFetchAccountDragonsQuery } from "../slices/dragonApiSlice";
 import AccountDragonRow from "./AccountDragonRow";
 import { NavLink } from "react-router-dom";
+import Loader from "./Loader";
 
 const AccountDragons = () => {
   const { data, error, isLoading } = useFetchAccountDragonsQuery();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   console.log("Fetched account dragons:", data);

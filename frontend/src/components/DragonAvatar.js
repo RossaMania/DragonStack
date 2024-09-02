@@ -1,6 +1,7 @@
 import React from "react";
 
 import { patchy, plain, skinny, slender, sporty, spotted, stocky, striped } from "../assets";
+import Loader from "./Loader";
 
 const propertyMap = {
   backgroundColor: {
@@ -45,7 +46,7 @@ const DragonAvatar = ({ dragon }) => {
 
   if (!dragon || !Array.isArray(dragon.traits)) { // Check if dragon or dragon.traits is undefined or not an array
     console.log("Oops! Dragon or dragon traits are undefined!"); // Add this line to check if dragon or dragon.traits is undefined
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const dragonPropertyMap = {};

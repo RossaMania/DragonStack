@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Initial state of the auth slice.
 const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -8,7 +7,6 @@ const initialState = {
   login: false,
 };
 
-// Create the auth slice with the setCredentials reducer function to set the user's credentials in the state.
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -19,7 +17,7 @@ const authSlice = createSlice({
       state.login = true;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
     },
-    logout: (state, action) => {
+    logout: (state) => {
       //Set the userInfo part of the state to null, and remove from localStorage.
       // We don't need to pass in the action because we are not using the payload.
       state.userInfo = null;
