@@ -1,16 +1,18 @@
 import { NavLink } from "react-router-dom"
 import { useFetchPublicDragonsQuery } from "../slices/dragonApiSlice"
+import Loader from "./Loader"
 
 const PublicDragons = () => {
 
   // @TODO Research NavLink in Bootstrap.
 
   const { data: publicDragons, isLoading } = useFetchPublicDragonsQuery()
+
   return (
     <div>
     <h3>Public Dragons</h3>
     {isLoading ? (
-      <div>Loading...</div>
+      <Loader />
     ) : (
       <div>
         {publicDragons.map((dragon) => (

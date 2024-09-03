@@ -43,6 +43,8 @@ const logoutHandler = async () => {
       <Dragon />
       <AccountInfo />
       <NavLink to="/account-dragons">Account Dragons</NavLink>
+      <br />
+      <NavLink to="/public-dragons">Public Dragons</NavLink>
     </div>
   );
 };

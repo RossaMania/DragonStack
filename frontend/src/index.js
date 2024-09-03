@@ -15,6 +15,7 @@ import './index.css';
 import App from "./App";
 import Root from "./components/Root";
 import AccountDragons from "./components/AccountDragons";
+import PublicDragons from "./components/PublicDragons";
 import AuthRoute from "./components/AuthRoute";
 
 const router = createBrowserRouter(
