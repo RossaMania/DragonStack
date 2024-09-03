@@ -57,10 +57,5 @@ const getPublicDragons = () => {
   });
 };
 
-// getDragonWithTraits({ dragonId: 1 })
-//   .then(dragon => console.log("dragon", dragon))
-//   .catch(error => console.error("error", error)); // for debugging
-
-
 
 module.exports = { getDragonWithTraits, getPublicDragons };

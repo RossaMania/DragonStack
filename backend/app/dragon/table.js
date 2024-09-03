@@ -75,9 +75,4 @@ class DragonTable {
   }
 }
 
-// Test the DragonTable class
-// DragonTable.updateDragon({ dragonId: 1, nickname: "fooby" })
-// .then(() => console.log("Successfully updated dragon!"))
-// .catch(error => console.error("Error updating dragon!", error));
-
 module.exports = DragonTable;
