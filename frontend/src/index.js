@@ -24,6 +24,7 @@ const router = createBrowserRouter(
 
       <Route path="" element={<AuthRoute />}>
       <Route path="/account-dragons" element={<AccountDragons />} />
+      <Route path="/public-dragons" element={<PublicDragons />} />
       </Route>
     </Route>
 
