@@ -14,28 +14,13 @@ export const dragonApiSlice = apiSlice.injectEndpoints({
       method: "GET",
       }),
     }),
+    fetchPublicDragons: builder.query({
+      query: () => ({
+      url: "/dragon/public-dragons",
+      method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useFetchDragonQuery, useFetchAccountDragonsQuery } = dragonApiSlice;
-
-// import { apiSlice } from "./apiSlice";
-
-
-// export const dragonApiSlice = apiSlice.injectEndpoints({
-//   endpoints: (builder) => ({
-//     fetchDragon: builder.query({
-//       query: () => "/dragon/new",
-//       method: "GET", // default
-//     }),
-//     createDragon: builder.mutation({
-//       query: (newDragon) => ({
-//         url: '/dragon',
-//         method: 'POST',
-//         body: newDragon,
-//       }),
-//     }),
-//   }),
-// });
-
-// export const { useFetchDragonQuery, useCreateDragonMutation } = dragonApiSlice;
+export const { useFetchDragonQuery, useFetchAccountDragonsQuery, useFetchPublicDragonsQuery } = dragonApiSlice;
