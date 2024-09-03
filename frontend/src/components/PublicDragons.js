@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom"
 import { useFetchPublicDragonsQuery } from "../slices/dragonApiSlice"
+
 import Loader from "./Loader"
+import PublicDragonRow from "./PublicDragonRow"
 
 const PublicDragons = () => {
 
@@ -11,17 +13,19 @@ const PublicDragons = () => {
   return (
     <div>
     <h3>Public Dragons</h3>
+    <NavLink to="/">Home</NavLink>
     {isLoading ? (
       <Loader />
     ) : (
       <div>
-        {publicDragons.map((dragon) => (
+      {publicDragons.dragons.map((dragon) => {
+        return (
           <div key={dragon.dragonId}>
-            <span>{dragon.nickname}</span>{" "}
-            <span>{dragon.traits.map((trait) => trait.traitValue).join(", ")}</span>
+          <PublicDragonRow dragon={dragon} />
+          <hr />
           </div>
-        ))}
-    <NavLink to="/">Home</NavLink>
+      )
+      })}
     </div>
   )
 }
