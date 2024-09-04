@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const DragonTable = require("../dragon/table.js"); // Import the DragonTable class from the table.js file in the dragon directory.
+const DragonTable = require("../dragon/table.js");
 const AccountDragonTable = require("../accountDragon/table.js");
 const { authenticatedAccount } = require("./helper.js");
+const { getPublicDragons } = require("../dragon/helper.js");
 
 const router = new Router();
 
@@ -31,11 +32,25 @@ router.get("/new", (req, res, next) => {
 
 router.put("/update", (req, res, next) => {
 
-  const { dragonId, nickname } = req.body;
+  const { dragonId, nickname, isPublic, saleValue } = req.body;
+  console.log("Received PUT request to update dragon:", { dragonId, nickname, isPublic, saleValue });
 
-  DragonTable.updateDragon({ dragonId, nickname })
+  DragonTable.updateDragon({ dragonId, nickname, isPublic, saleValue })
   .then(() => res.json({ message: "Dragon updated!" }))
   .catch(error => next(error));
+
+});
+
+router.get("/public-dragons", (req, res, next) => {
+
+  getPublicDragons()
+  .then(({ dragons }) => {
+    res.json({ dragons });
+  })
+  .catch(error => {
+    console.error(error);
+    next(error)
+  });
 
 });
 

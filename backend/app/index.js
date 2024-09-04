@@ -16,7 +16,7 @@ app.locals.engine = engine;
 app.use(
   cors({
     origin: "http://localhost:1234",
-    credentials: true,
+    credentials: true
   })
 );
 
@@ -39,13 +39,6 @@ app.use((req, res, next) => {
 app.use("/account", accountRouter);
 app.use("/dragon", dragonRouter);
 app.use("/generation", generationRouter);
-
-
-// Preflight handling (OPTIONS requests)
-// app.options("*", cors({
-//   origin: "http://localhost:1234",
-//   credentials: true
-// }));
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
