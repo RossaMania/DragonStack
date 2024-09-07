@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const DragonTable = require("../dragon/table.js");
+const AccountTable = require("../account/table.js");
 const AccountDragonTable = require("../accountDragon/table.js");
 const { authenticatedAccount } = require("./helper.js");
 const { getPublicDragons } = require("../dragon/helper.js");
@@ -106,8 +107,11 @@ router.post("/buy", (req, res, next) => {
       ])
     })
     .then(() => res.json({ message: "Transaction successful!" }))
-    .catch(error => next(error));
-});
+    .catch(error => {
+      console.error(error);
+      next(error)
+    });
+  });
 
 
 module.exports = router;
