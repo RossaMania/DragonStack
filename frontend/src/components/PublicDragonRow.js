@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
-import useNavigate from "../hooks/useNavigate";
+import { useNavigate }  from "react-router-dom";
 
 const PublicDragonRow = ({ dragon }) => {
   const { navigate } = useNavigate();
