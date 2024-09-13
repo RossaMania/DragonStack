@@ -1,8 +1,9 @@
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PublicDragonRow = ({ dragon }) => {
+  const navigate = useNavigate();
 
   const buyDragon = () => {
     fetch("http://localhost:3000/dragon/buy", {
@@ -16,7 +17,7 @@ const PublicDragonRow = ({ dragon }) => {
         alert(json.message);
         if (json.type !== "error") {
           // redirect to account-dragons page
-          redirect("/account-dragons");
+          navigate("/account-dragons");
         }
       })
       .catch(error => alert(error.message));
