@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
 
 const PublicDragonRow = ({ dragon }) => {
@@ -7,6 +8,8 @@ const PublicDragonRow = ({ dragon }) => {
       <div>{dragon.dragonId}</div>
       <DragonAvatar dragon={dragon} />
       <div>{dragon.saleValue}</div>
+      <br />
+      <Button>Buy!</Button>
     </div>
   )
 }
