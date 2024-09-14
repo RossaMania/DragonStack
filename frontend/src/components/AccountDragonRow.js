@@ -16,6 +16,9 @@ const AccountDragonRow = ({ dragon }) => {
   // A state variable to store the isPublic value of the dragon.
   const [isPublic, setIsPublic] = useState(dragon.isPublic);
 
+  // A state variable to store the sire value of the dragon.
+  const [sireValue, setSireValue] = useState(dragon.sireValue);
+
   // A function that will toggle the edit mode of the dragon.
   const toggleEdit = (e) => {
     e.preventDefault();
@@ -68,6 +71,11 @@ const AccountDragonRow = ({ dragon }) => {
     console.log("Update is public:", isPublic);
   }
 
+  const updateSireValue = (e) => {
+    e.preventDefault();
+    setSireValue(e.target.value);
+    console.log("Update sire value:", sireValue);
+  }
 
   return (
     <div>
@@ -81,6 +89,15 @@ const AccountDragonRow = ({ dragon }) => {
           disabled={!edit}
           value={saleValue}
           onChange={updateSaleValue}
+        />
+      </span>{" "}
+      <span>
+        Sire Value:{" "}
+        <input
+          type="number"
+          disabled={!edit}
+          value={sireValue}
+          onChange={updateSireValue}
         />
       </span>{" "}
       <span>
