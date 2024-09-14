@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
 import { useNavigate } from "react-router-dom";
+import MatingOptions from "./MatingOptions";
 
 const PublicDragonRow = ({ dragon }) => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const PublicDragonRow = ({ dragon }) => {
       </Button>
       {displayMatingOptions && (
         <div>
-          <div>Mating Options</div>
+          <MatingOptions />
           <div></div>
         </div>
       )}
