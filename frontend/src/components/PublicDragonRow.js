@@ -3,9 +3,13 @@ import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
 import { useNavigate } from "react-router-dom";
 import MatingOptions from "./MatingOptions";
+import { useFetchAccountDragonsQuery } from "./dragonApiSlice";
+import Loader from "./Loader";
 
 const PublicDragonRow = ({ dragon }) => {
   const navigate = useNavigate();
+
+  const { data: accountDragons, error, isLoading } = useFetchAccountDragonsQuery();
 
   const [displayMatingOptions, setDisplayMatingOptions] = useState(false);
 
@@ -31,6 +35,9 @@ const PublicDragonRow = ({ dragon }) => {
       .catch(error => alert(error.message));
   };
 
+  if (isLoading) return <Loader />;
+  if (error) return <div>Error loading dragons.</div>;
+
   return (
     <div>
       <div>{dragon.nickname}</div>
@@ -47,7 +54,7 @@ const PublicDragonRow = ({ dragon }) => {
       </Button>
       {displayMatingOptions && (
         <div>
-          <MatingOptions />
+          <MatingOptions accountDragons={accountDragons}/>
           <div></div>
         </div>
       )}
