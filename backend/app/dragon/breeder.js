@@ -1,3 +1,4 @@
+const base64 = require("base-64");
 const Dragon = require("./index");
 
 class Breeder {
@@ -30,13 +31,25 @@ class Breeder {
     // Return a new Dragon instance with the baby traits
     return new Dragon({ nickname: "Unnamed baby", traits: babyTraits });
   }
-  static pickTrait({ matronTrait, patronTrait }) {
-    // If matronTrait and patronTrait are the same, return either one
+
+   static pickTrait({ matronTrait, patronTrait }) {
+    // If matronTrait and patronTrait are the same, return matronTrait
     if (matronTrait === patronTrait) return matronTrait;
 
-    // If matronTrait and patronTrait are different, return either one randomly
-    if (Math.random() > 0.5) return matronTrait;
-    return patronTrait;
+    // Encode traits to base64 and calculate their character sums
+    const matronTraitCharSum = Breeder.charSum(base64.encode(matronTrait));
+    const patronTraitCharSum = Breeder.charSum(base64.encode(patronTrait));
+
+    // Generate a random number within the range of the combined character sums
+    const randomNum = Math.floor(Math.random() * (matronTraitCharSum + patronTraitCharSum));
+
+    // Return matronTrait if randomNum is less than matronTraitCharSum, otherwise return patronTrait
+    return randomNum < matronTraitCharSum ? matronTrait : patronTrait;
+  }
+
+  static charSum(string) {
+    // Calculate the sum of character codes for the given string
+    return string.split("").reduce((sum, character) => sum += character.charCodeAt(), 0);
   }
 }
 
