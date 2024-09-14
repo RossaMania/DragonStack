@@ -30,4 +30,14 @@ class Breeder {
     // Return a new Dragon instance with the baby traits
     return new Dragon({ nickname: "Unnamed baby", traits: babyTraits });
   }
+  static pickTrait({ matronTrait, patronTrait }) {
+    // If matronTrait and patronTrait are the same, return either one
+    if (matronTrait === patronTrait) return matronTrait;
+
+    // If matronTrait and patronTrait are different, return either one randomly
+    if (Math.random() > 0.5) return matronTrait;
+    return patronTrait;
+  }
 }
+
+module.exports = Breeder;
