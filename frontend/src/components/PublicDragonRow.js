@@ -26,9 +26,12 @@ const PublicDragonRow = ({ dragon }) => {
   return (
     <div>
       <div>{dragon.nickname}</div>
-      <div>{dragon.dragonId}</div>
+      <div><span>ID: {dragon.dragonId}</span></div>
       <DragonAvatar dragon={dragon} />
-      <div>{dragon.saleValue}</div>
+      <div>
+      <span>Sale Value: {dragon.saleValue}</span>{" | "}
+      <span>Sire Value: {dragon.sireValue}</span>
+      </div>
       <br />
       <Button onClick={buyDragon}>Buy!</Button>
     </div>
