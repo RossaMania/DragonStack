@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import DragonAvatar from "./DragonAvatar";
 import { useNavigate } from "react-router-dom";
 
 const PublicDragonRow = ({ dragon }) => {
   const navigate = useNavigate();
+
+  const [displayMatingOptions, setDisplayMatingOptions] = useState(false);
+
+  const toggleDisplayMatingOptions = () => {
+    setDisplayMatingOptions(!displayMatingOptions);
+  }
 
   const buyDragon = () => {
     fetch("http://localhost:3000/dragon/buy", {
@@ -33,7 +40,16 @@ const PublicDragonRow = ({ dragon }) => {
       <span>Sire Value: {dragon.sireValue}</span>
       </div>
       <br />
-      <Button onClick={buyDragon}>Buy!</Button>
+      <Button onClick={buyDragon}>Buy!</Button>{" "}
+      <Button onClick={toggleDisplayMatingOptions}>
+        {displayMatingOptions ? "Cancel" : "Sire!"}
+      </Button>
+      {displayMatingOptions && (
+        <div>
+          <div>Mating Options</div>
+          <div></div>
+        </div>
+      )}
     </div>
   )
 }
