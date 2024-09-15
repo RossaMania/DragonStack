@@ -9,18 +9,15 @@ import Loader from "./Loader";
 const Dragon = () => {
   const dispatch = useDispatch();
   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
-  console.log(dragon);
   const selectedDragon = useSelector((state) => state.dragon.selectedDragon);
 
   useEffect(() => {
     if (dragon) {
-      console.log(dragon);
       dispatch(selectDragon(dragon));
     }
   }, [dragon, dispatch]);
 
   const handleCreateDragon = () => {
-    console.log(isLoading, error);
     refetch();
   };
 

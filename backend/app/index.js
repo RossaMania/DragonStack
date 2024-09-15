@@ -23,19 +23,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Debugging middleware to log request and response headers
-app.use((req, res, next) => {
-  console.log("Request Headers:", req.headers);
-  next();
-});
-
-app.use((req, res, next) => {
-  res.on("finish", () => {
-    console.log("Response Headers:", res.getHeaders());
-  });
-  next();
-});
-
 app.use("/account", accountRouter);
 app.use("/dragon", dragonRouter);
 app.use("/generation", generationRouter);
