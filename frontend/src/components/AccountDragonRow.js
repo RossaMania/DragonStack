@@ -33,7 +33,7 @@ const AccountDragonRow = ({ dragon }) => {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
-    body: JSON.stringify({ dragonId: dragon.dragonId, nickname, saleValue, isPublic })
+    body: JSON.stringify({ dragonId: dragon.dragonId, nickname, saleValue, isPublic, sireValue})
   })
     .then((response) => response.json())
     .then((json) => {

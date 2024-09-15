@@ -10,16 +10,12 @@ const AccountDragons = () => {
   if (isLoading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
-  console.log("Fetched account dragons:", data);
-  console.log("Dragons array:", data.dragons);
-
   return (
     <div>
       <h1>Account Dragons</h1>
       <ul>
         {data && data.dragons ? (
           data.dragons.map((dragon) => {
-            console.log("Rendering dragon:", dragon);
             return (
               <div key={dragon.dragonId}>
                 <AccountDragonRow dragon={dragon} />

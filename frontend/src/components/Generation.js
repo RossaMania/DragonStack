@@ -10,7 +10,6 @@ const Generation = () => {
   const generationData = useSelector((state) => state.generation);
 
   useEffect(() => {
-    console.log("useEffect called");
 
     dispatch(setLoading(true));
 
@@ -18,11 +17,8 @@ const Generation = () => {
 
     if (generation) {
 
-      console.log("generation is truthy:", generation);
-
       dispatch(setGeneration(generation));
       dispatch(setLoading(false));
-      console.log("Dispatched setLoading with false");
 
     } else if (error) {
 
@@ -33,22 +29,16 @@ const Generation = () => {
     }
   }, [generation, error, dispatch]);
 
-  console.log("Before isLoading check:", generationData);
-
   if (isLoading) {
     console.log("Loading state:", isLoading);
     return <Loader />;
   }
-
-  console.log("After isLoading check:", generationData);
 
 
   if (error) {
     console.log("Error state:", error);
     return `Error: ${error.message}`;
   }
-
-  console.log("Before rendering:", generationData);
 
   return (
     <div>
