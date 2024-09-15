@@ -18,7 +18,7 @@ router.get("/new", (req, res, next) => {
     accountId = account.id;
 
     // Get a new dragon instance from the generation engine
-    dragon = req.app.locals.engine.generation.newDragon();
+    dragon = req.app.locals.engine.generation.newDragon({ accountId });
 
     // Store the new dragon in the database
     return DragonTable.storeDragon(dragon);
