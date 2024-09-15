@@ -1,9 +1,9 @@
-import { Button } from "react-bootstrap"
+import { Button } from "react-bootstrap";
 
 const MatingOptions = ({ accountDragons }) => {
   console.log("MatingOptions accountDragons:", accountDragons);
 
-  if (!accountDragons || !accountDragons.dragons) {
+  if (!accountDragons || !Array.isArray(accountDragons.dragons)) {
     return <div>No dragons available for mating.</div>;
   }
 
@@ -20,7 +20,7 @@ const MatingOptions = ({ accountDragons }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MatingOptions
+export default MatingOptions;
