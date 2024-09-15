@@ -32,7 +32,7 @@ const Dragon = () => {
 
       {/* Either show error or DragonAvatar, but not both */}
       {!isLoading && error ? (
-        <div>Error: {error.data?.message || "An error occurred"}</div>
+        <h2>Error: {error.data?.message || "An error occurred"}</h2>
       ) : (
         selectedDragon && <DragonAvatar dragon={selectedDragon.dragon} />
       )}
