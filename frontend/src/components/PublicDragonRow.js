@@ -57,7 +57,7 @@ const PublicDragonRow = ({ dragon, accountDragons }) => {
       </Button>
       {displayMatingOptions && (
         <div>
-          <MatingOptions accountDragons={accountDragons} />
+          <MatingOptions accountDragons={accountDragons} patronDragonId={dragon.dragonId} />
           <div></div>
         </div>
       )}
