@@ -11,6 +11,7 @@ const Dragon = () => {
   const { data: dragon, error, isLoading, refetch } = useFetchDragonQuery();
   const selectedDragon = useSelector((state) => state.dragon.selectedDragon);
 
+  // Dispatch the dragon data to the Redux store if dragon data is available
   useEffect(() => {
     if (dragon) {
       dispatch(selectDragon(dragon));
@@ -21,15 +22,20 @@ const Dragon = () => {
     refetch();
   };
 
-  console.log("Dragon in parent component:", dragon);
-
   if (isLoading) return <Loader />;
-  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
       <h3>This is a Dragon</h3>
-      {selectedDragon && <DragonAvatar dragon={selectedDragon.dragon} />}
+      {/* Loader while fetching */}
+      {isLoading && <Loader />}
+
+      {/* Either show error or DragonAvatar, but not both */}
+      {!isLoading && error ? (
+        <div>Error: {error.data?.message || "An error occurred"}</div>
+      ) : (
+        selectedDragon && <DragonAvatar dragon={selectedDragon.dragon} />
+      )}
       <Button onClick={handleCreateDragon}>New Dragon!</Button>
     </div>
   );
