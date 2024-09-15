@@ -9,43 +9,59 @@ import Loader from "./Loader";
 const PublicDragonRow = ({ dragon }) => {
   const navigate = useNavigate();
 
-  const { data: accountDragons, error, isLoading } = useFetchAccountDragonsQuery();
+  const {
+    data: accountDragons,
+    error,
+    isLoading,
+  } = useFetchAccountDragonsQuery();
 
   const [displayMatingOptions, setDisplayMatingOptions] = useState(false);
 
+  useEffect(() => {
+    console.log("Fetched accountDragons:", accountDragons); // Debugging line
+  }, [accountDragons]);
+
   const toggleDisplayMatingOptions = () => {
     setDisplayMatingOptions(!displayMatingOptions);
-  }
+  };
 
   const buyDragon = () => {
     fetch("http://localhost:3000/dragon/buy", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ dragonId: dragon.dragonId, saleValue: dragon.saleValue })
+      body: JSON.stringify({
+        dragonId: dragon.dragonId,
+        saleValue: dragon.saleValue,
+      }),
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         alert(json.message);
         if (json.type !== "error") {
           // redirect to account-dragons page
           navigate("/account-dragons");
         }
       })
-      .catch(error => alert(error.message));
+      .catch((error) => alert(error.message));
   };
 
   if (isLoading) return <Loader />;
   if (error) return <div>Error loading dragons.</div>;
 
+  console.log("Account Dragons Data:", accountDragons);
+
   return (
     <div>
       <div>{dragon.nickname}</div>
-      <div><span>ID: {dragon.dragonId}</span></div>
+      <div>
+        <span>ID: {dragon.dragonId}</span>
+      </div>
       <DragonAvatar dragon={dragon} />
       <div>
-      <span>Sale Value: {dragon.saleValue}</span>{" | "}
-      <span>Sire Value: {dragon.sireValue}</span>
+        <span>Sale Value: {dragon.saleValue}</span>
+        {" | "}
+        <span>Sire Value: {dragon.sireValue}</span>
       </div>
       <br />
       <Button onClick={buyDragon}>Buy!</Button>{" "}
@@ -54,12 +70,12 @@ const PublicDragonRow = ({ dragon }) => {
       </Button>
       {displayMatingOptions && (
         <div>
-          <MatingOptions accountDragons={accountDragons}/>
+          <MatingOptions accountDragons={accountDragons} />
           <div></div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default PublicDragonRow
+export default PublicDragonRow;

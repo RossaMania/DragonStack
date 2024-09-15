@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap"
 
 const MatingOptions = ({ accountDragons }) => {
+  console.log("MatingOptions accountDragons:", accountDragons);
+
   if (!accountDragons || !accountDragons.dragons) {
     return <div>No dragons available for mating.</div>;
   }
