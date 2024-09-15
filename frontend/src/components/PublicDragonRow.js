@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import MatingOptions from "./MatingOptions";
 
 const PublicDragonRow = ({ dragon, accountDragons }) => {
+  console.log("PublicDragonRow accountDragons:", accountDragons);
+
   const navigate = useNavigate();
 
   const [displayMatingOptions, setDisplayMatingOptions] = useState(false);

@@ -2,9 +2,13 @@ import { Button } from "react-bootstrap";
 
 const MatingOptions = ({ accountDragons }) => {
   console.log("MatingOptions accountDragons:", accountDragons);
+  console.log("Type of accountDragons:", typeof accountDragons);
+  console.log("Type of accountDragons.dragons:", Array.isArray(accountDragons.dragons) ? 'Array' : typeof accountDragons.dragons);
 
-  // Check if accountDragons has a dragons property that is an array
-  if (accountDragons && Array.isArray(accountDragons.dragons)) {
+  if (!accountDragons || !Array.isArray(accountDragons.dragons)) {
+    return <div>No dragons available for mating.</div>;
+  }
+
     return (
       <div>
         <h4>Pick one of your dragons to mate with!</h4>
@@ -19,10 +23,6 @@ const MatingOptions = ({ accountDragons }) => {
         </div>
       </div>
     );
-  }
-
-  console.log("No dragons available for mating or incorrect structure:", accountDragons);
-  return <div>No dragons available for mating.</div>;
 };
 
 export default MatingOptions;
