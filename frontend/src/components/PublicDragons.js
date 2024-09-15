@@ -11,7 +11,7 @@ const PublicDragons = () => {
   const { data: publicDragons, isLoading } = useFetchPublicDragonsQuery();
   const { data: accountDragons, isLoading: isLoadingAccountDragons } = useFetchAccountDragonsQuery();
 
-    if (isLoadingPublicDragons || isLoadingAccountDragons) {
+    if (isLoading || isLoadingAccountDragons) {
     return <Loader />;
   }
 
