@@ -4,14 +4,10 @@ import DragonAvatar from "./DragonAvatar";
 import { useNavigate } from "react-router-dom";
 import MatingOptions from "./MatingOptions";
 
-const PublicDragonRow = ({ dragon }) => {
+const PublicDragonRow = ({ dragon, accountDragons }) => {
   const navigate = useNavigate();
 
   const [displayMatingOptions, setDisplayMatingOptions] = useState(false);
-
-  useEffect(() => {
-    console.log("Fetched accountDragons:", accountDragons); // Debugging line
-  }, [accountDragons]);
 
   const toggleDisplayMatingOptions = () => {
     setDisplayMatingOptions(!displayMatingOptions);
@@ -59,7 +55,7 @@ const PublicDragonRow = ({ dragon }) => {
       </Button>
       {displayMatingOptions && (
         <div>
-          <MatingOptions />
+          <MatingOptions accountDragons={accountDragons} />
           <div></div>
         </div>
       )}
