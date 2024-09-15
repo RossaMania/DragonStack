@@ -3,24 +3,44 @@ import { Button } from "react-bootstrap";
 const MatingOptions = ({ accountDragons }) => {
   console.log("MatingOptions accountDragons:", accountDragons);
 
-  if (!accountDragons || !Array.isArray(accountDragons.dragons)) {
-    return <div>No dragons available for mating.</div>;
+  // Check if accountDragons is an array directly
+  if (Array.isArray(accountDragons)) {
+    return (
+      <div>
+        <h4>Pick one of your dragons to mate with!</h4>
+        <div>
+          {accountDragons.map(dragon => (
+            <span key={dragon.dragonId}>
+              <Button>
+                G{dragon.generationId}.ID{dragon.dragonId}. {dragon.nickname}
+              </Button>
+            </span>
+          ))}
+        </div>
+      </div>
+    );
   }
 
-  return (
-    <div>
-      <h4>Pick one of your dragons to mate with!</h4>
+  // Check if accountDragons has a dragons property that is an array
+  if (accountDragons && Array.isArray(accountDragons.dragons)) {
+    return (
       <div>
-        {accountDragons.dragons.map(dragon => (
-          <span key={dragon.dragonId}>
-            <Button>
-              G{dragon.generationId}.ID{dragon.dragonId}. {dragon.nickname}
-            </Button>
-          </span>
-        ))}
+        <h4>Pick one of your dragons to mate with!</h4>
+        <div>
+          {accountDragons.dragons.map(dragon => (
+            <span key={dragon.dragonId}>
+              <Button>
+                G{dragon.generationId}.ID{dragon.dragonId}. {dragon.nickname}
+              </Button>
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  console.log("No dragons available for mating or incorrect structure:", accountDragons);
+  return <div>No dragons available for mating.</div>;
 };
 
 export default MatingOptions;
